@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"hide","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="浅拷贝与深拷贝 浅拷贝 12345678function extendCopy(p, c) &amp;#123;  var c = c || &amp;#123;&amp;#125;;  for (var i in p) &amp;#123;    c[i] = p[i];  &amp;#125;  c.uber = p;  return c;&amp;#125;  123&#x2F;&#x2F; ES2015 的语法,性能良好var a = &amp;#123;&amp;#12">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js知识点复习">
+<meta property="og:url" content="https:&#x2F;&#x2F;dingcang.github.io&#x2F;2017&#x2F;10&#x2F;js%E7%9F%A5%E8%AF%86%E7%82%B9%E5%A4%8D%E4%B9%A0&#x2F;index.html">
+<meta property="og:site_name" content="丁仓的Blog">
+<meta property="og:description" content="浅拷贝与深拷贝 浅拷贝 12345678function extendCopy(p, c) &amp;#123;  var c = c || &amp;#123;&amp;#125;;  for (var i in p) &amp;#123;    c[i] = p[i];  &amp;#125;  c.uber = p;  return c;&amp;#125;  123&#x2F;&#x2F; ES2015 的语法,性能良好var a = &amp;#123;&amp;#12">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-07-04T03:24:00.000Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://dingcang.github.io/2017/10/js%E7%9F%A5%E8%AF%86%E7%82%B9%E5%A4%8D%E4%B9%A0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>js知识点复习 | 丁仓的Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">丁仓的Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://dingcang.github.io/2017/10/js%E7%9F%A5%E8%AF%86%E7%82%B9%E5%A4%8D%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="dingcang">
+      <meta itemprop="description" content="something to write">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丁仓的Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          js知识点复习
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-10-28 22:19:39" itemprop="dateCreated datePublished" datetime="2017-10-28T22:19:39+08:00">2017-10-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2018-07-04 11:24:00" itemprop="dateModified" datetime="2018-07-04T11:24:00+08:00">2018-07-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="浅拷贝与深拷贝"><a href="#浅拷贝与深拷贝" class="headerlink" title="浅拷贝与深拷贝"></a>浅拷贝与深拷贝</h2><ul>
+<li><p>浅拷贝</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">extendCopy</span>(<span class="params">p, c</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> c = c || &#123;&#125;;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> p) &#123;</span><br><span class="line">    c[i] = p[i];</span><br><span class="line">  &#125;</span><br><span class="line">  c.uber = p;</span><br><span class="line">  <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES2015 的语法,性能良好</span></span><br><span class="line"><span class="keyword">var</span> a = &#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> b = <span class="built_in">Object</span>.assign(&#123;&#125;, a);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>深拷贝</p>
+<ul>
+<li><p>递归方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepCopy</span>(<span class="params">p, c</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> c = c || &#123;&#125;;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> p) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> p[i] == <span class="string">'object'</span>) &#123;</span><br><span class="line">      c[i] = p[i].constructor === <span class="built_in">Array</span> ? [] : &#123;&#125;;</span><br><span class="line">      deepCopy(p[i], c[i]);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      c[i] = p[i];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>JSON 对象的提供的方法,性能不太理想</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> b = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(a));</span><br></pre></td></tr></table></figure>
+
+<p>能够处理JSON格式的所有数据类型，但是对于正则表达式类型、函数类型等无法进行深拷贝，而且会直接丢失相应的值，还有就是它会抛弃对象的constructor。也就是深拷贝之后，不管这个对象原来的构造函数是什么，在深拷贝之后都会变成Object。</p>
+</li>
+</ul>
+</li>
+</ul><a id="more"></a>
+<h2 id="什么是跨域"><a href="#什么是跨域" class="headerlink" title="什么是跨域"></a>什么是跨域</h2><blockquote>
+<p>拥有相同的协议、端口和主机，那么就属于同一个源（origin）。反之，不符合条件的都是跨域。</p>
+</blockquote>
+<h2 id="GET-和-POST-的区别"><a href="#GET-和-POST-的区别" class="headerlink" title="GET 和 POST 的区别"></a>GET 和 POST 的区别</h2><ul>
+<li><p><strong>GET 和 POST 长度的限制问题</strong><br>GET 是通过 URL 提交数据，因此 GET 可提交的数据量就跟 URL 所能达到的最大长度有直接关系。实际上 HTTP 协议对 URL 长度是没有限制的；限制 URL 长度大多数是浏览器或者服务器的配置参数;同样的，HTTP 协议没有对 POST 进行任何限制，一般是受服务器配置限制或者内存大小。</p>
+</li>
+<li><p><strong>GET 和 POST 的安全性</strong><br>GET 是通过 URL 方式请求，可以直接看到，明文传输。POST 是通过请求 header 请求，可以开发者工具或者抓包可以看到，同样也是明文的。GET 请求会保存在浏览器历史纪录中，还可能会保存在 Web 的日志中。</p>
+</li>
+<li><p><strong>对服务器状态的影响</strong><br>根据 http 的设计，GET 应该对服务器状态没有修改，而 POST 应该对服务器状态做修改。</p>
+</li>
+<li><p><strong>幂等</strong><br>幂等是指同一个请求方法执行多次和仅执行一次的效果完全相同。按照 RFC 规范，PUT，DELETE 和安全方法都是幂等的,POST 语义不是幂等的。</p>
+</li>
+<li><p><strong>总结</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">改变服务器状态</th>
+<th align="center">不改变服务器状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">幂等</td>
+<td align="center">PUT</td>
+<td align="center">GET</td>
+</tr>
+<tr>
+<td align="center">不幂等</td>
+<td align="center">POST</td>
+<td align="center">无</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h2 id="原型、原型链、继承"><a href="#原型、原型链、继承" class="headerlink" title="原型、原型链、继承"></a>原型、原型链、继承</h2><p>prototype：构造函数中的属性，指向该构造函数的原型对象。</p>
+<p>constructor：原型对象中的属性，指向该原型对象的构造函数</p>
+<p>_proto_：实例中的属性，指向 new 这个实例的构造函数的原型对象</p>
+<h2 id="apply-call-bind-组成的黑魔法"><a href="#apply-call-bind-组成的黑魔法" class="headerlink" title="apply|call|bind 组成的黑魔法"></a>apply|call|bind 组成的黑魔法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.bind.apply(</span><br><span class="line">  targetFunction,</span><br><span class="line">  [target].concat(<span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>)),</span><br><span class="line">);</span><br><span class="line"><span class="comment">//返回一个接收任意数量参数，函数体为targetFunction（即目标函数），函数执行上下文为target的绑定函数</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="vue2-x-官方文档中新建一个已初始化的数组方式"><a href="#vue2-x-官方文档中新建一个已初始化的数组方式" class="headerlink" title="vue2.x 官方文档中新建一个已初始化的数组方式"></a>vue2.x 官方文档中新建一个已初始化的数组方式</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> length = <span class="number">5</span>; <span class="comment">// length是个number类型</span></span><br><span class="line"><span class="keyword">let</span> initValueArr = <span class="built_in">Array</span>.apply(<span class="literal">null</span>, &#123; length &#125;); <span class="comment">// initValueArr是一个长度为5的已初始化数组</span></span><br><span class="line"><span class="built_in">console</span>.log(initValueArr); <span class="comment">// [undefined, undefined, undefined, undefined, undefined]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Object-seal-封闭对象"><a href="#Object-seal-封闭对象" class="headerlink" title="Object.seal 封闭对象"></a>Object.seal 封闭对象</h2><blockquote>
+<p>Object.seal()方法封闭一个对象，阻止添加新属性并将所有现有属性标记为不可配置。当前属性的值只要可写就可以改变。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = &#123;</span><br><span class="line">  b: <span class="number">1</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">Object</span>.seal(a);</span><br><span class="line">a.b; <span class="comment">// 1</span></span><br><span class="line">a.b = <span class="number">2</span>;</span><br><span class="line">a.b; <span class="comment">// 2</span></span><br><span class="line">a.c = <span class="number">1</span>;</span><br><span class="line">a.c; <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Object-freeze-冻结对象"><a href="#Object-freeze-冻结对象" class="headerlink" title="Object.freeze 冻结对象"></a>Object.freeze 冻结对象</h2><blockquote>
+<p>Object.freeze() 方法可以冻结一个对象，冻结指的是不能向这个对象添加新的属性，不能修改其已有属性的值，不能删除已有属性，以及不能修改该对象已有属性的可枚举性、可配置性、可写性。该方法返回被冻结的对象。<br>如果一个属性的值是个对象，则这个对象中的属性是可以修改的，除非它也是个冻结对象。数组作为一种对象，被冻结，其元素不能被修改。没有数组元素可以被添加或移除。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2017/06/vue%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="next" title="vue的使用">
+                  <i class="fa fa-chevron-left"></i> vue的使用
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2017/12/linux%E5%AD%A6%E4%B9%A0/" rel="prev" title="linux学习">
+                  linux学习 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#浅拷贝与深拷贝"><span class="nav-number">1.</span> <span class="nav-text">浅拷贝与深拷贝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是跨域"><span class="nav-number">2.</span> <span class="nav-text">什么是跨域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GET-和-POST-的区别"><span class="nav-number">3.</span> <span class="nav-text">GET 和 POST 的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型、原型链、继承"><span class="nav-number">4.</span> <span class="nav-text">原型、原型链、继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apply-call-bind-组成的黑魔法"><span class="nav-number">5.</span> <span class="nav-text">apply|call|bind 组成的黑魔法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue2-x-官方文档中新建一个已初始化的数组方式"><span class="nav-number">6.</span> <span class="nav-text">vue2.x 官方文档中新建一个已初始化的数组方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Object-seal-封闭对象"><span class="nav-number">7.</span> <span class="nav-text">Object.seal 封闭对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Object-freeze-冻结对象"><span class="nav-number">8.</span> <span class="nav-text">Object.freeze 冻结对象</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="dingcang"
+    src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">dingcang</p>
+  <div class="site-description" itemprop="description">something to write</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dingcang" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;dingcang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/d15538928689" title="Twitter &amp;rarr; https:&#x2F;&#x2F;twitter.com&#x2F;d15538928689" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.fengerzh.com/" title="https:&#x2F;&#x2F;www.fengerzh.com&#x2F;" rel="noopener" target="_blank">日新亭</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.niuxiaokui.top/" title="https:&#x2F;&#x2F;blog.niuxiaokui.top&#x2F;" rel="noopener" target="_blank">奔跑的牛</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2016 – 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-html5"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Front End Programer</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

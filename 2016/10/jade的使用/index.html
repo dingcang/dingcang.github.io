@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"hide","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="jade（Pug）由于商标版权问题，jade 已经改名为 Pug，github 地址为https:&#x2F;&#x2F;github.com&#x2F;pugjs&#x2F;pug。jade 是一个高性能的模版引擎。文件后缀名是.pug(.jade)。">
+<meta name="keywords" content="jade">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jade的使用">
+<meta property="og:url" content="https:&#x2F;&#x2F;dingcang.github.io&#x2F;2016&#x2F;10&#x2F;jade%E7%9A%84%E4%BD%BF%E7%94%A8&#x2F;index.html">
+<meta property="og:site_name" content="丁仓的Blog">
+<meta property="og:description" content="jade（Pug）由于商标版权问题，jade 已经改名为 Pug，github 地址为https:&#x2F;&#x2F;github.com&#x2F;pugjs&#x2F;pug。jade 是一个高性能的模版引擎。文件后缀名是.pug(.jade)。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2016-10-05T02:51:09.000Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://dingcang.github.io/2016/10/jade%E7%9A%84%E4%BD%BF%E7%94%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>jade的使用 | 丁仓的Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">丁仓的Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://dingcang.github.io/2016/10/jade%E7%9A%84%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="dingcang">
+      <meta itemprop="description" content="something to write">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丁仓的Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          jade的使用
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-10-05 10:51:09" itemprop="dateCreated datePublished" datetime="2016-10-05T10:51:09+08:00">2016-10-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/jade/" itemprop="url" rel="index">
+                    <span itemprop="name">jade</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="jade（Pug）"><a href="#jade（Pug）" class="headerlink" title="jade（Pug）"></a>jade（Pug）</h2><p>由于商标版权问题，jade 已经改名为 Pug，github 地址为<a href="https://github.com/pugjs/pug" target="_blank" rel="noopener">https://github.com/pugjs/pug</a>。<br>jade 是一个高性能的模版引擎。<br>文件后缀名是.pug(.jade)。</p><a id="more"></a>
+<h2 id="jade-的优点"><a href="#jade-的优点" class="headerlink" title="jade 的优点"></a>jade 的优点</h2><ul>
+<li>可读性高</li>
+<li>灵活缩进</li>
+<li>块展开</li>
+<li>代码默认经过编码处理，安全性高</li>
+<li>运行时和编译时上下文错误报告</li>
+<li>支持命令行编译</li>
+<li>支持 html5 模式</li>
+<li>在内存中缓存（可选）</li>
+<li>原生支持 express</li>
+<li>合并动态和静态标签类</li>
+<li>过滤器</li>
+</ul>
+<h2 id="jade-的编译方法"><a href="#jade-的编译方法" class="headerlink" title="jade 的编译方法"></a>jade 的编译方法</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">pug xxx.jade //xxx为要编译的文件名</span><br><span class="line"></span><br><span class="line">pug -- help</span><br><span class="line">    Options:</span><br><span class="line">        -p,--pretty     compile pretty HTML output //输出漂亮结构的HTML</span><br><span class="line">        -D,--no-debug   compile without debugging(smaller functions) //不带调试的编译</span><br><span class="line">        -w,--watch      watch files for changes and automatically re-render //对某个文件的变动保持监控</span><br><span class="line">        -E,--extension &lt;ext&gt;    specify the output file extension //指定输出文件扩展名</span><br><span class="line">        -s,--silent     don't output logs //不输出日志</span><br></pre></td></tr></table></figure>
+
+<h2 id="jade-与-express"><a href="#jade-与-express" class="headerlink" title="jade 与 express"></a>jade 与 express</h2><p>jade 完全集成了一个流行的 node.js Web 框架 Express，作为支持的视图引擎。</p>
+<h2 id="jade-的-API"><a href="#jade-的-API" class="headerlink" title="jade 的 API"></a>jade 的 API</h2><h3 id="标签属性"><a href="#标签属性" class="headerlink" title="标签属性"></a>标签属性</h3><ul>
+<li><p><strong>id,class 写法</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 编译前</span><br><span class="line"></span><br><span class="line">p.title class写法1</span><br><span class="line">p(class=&apos;title&apos;) class写法2</span><br><span class="line">p#tit id写法1</span><br><span class="line">p(id=&apos;tit2&apos;) id写法2</span><br><span class="line"></span><br><span class="line">// 编译后</span><br><span class="line"></span><br><span class="line">&lt;p class=&quot;title&quot;&gt;class写法1&lt;/p&gt;</span><br><span class="line">&lt;p class=&quot;title&quot;&gt;class写法2&lt;/p&gt;</span><br><span class="line">&lt;p id=&quot;tit&quot;&gt;id写法&lt;/p&gt;</span><br><span class="line">&lt;p id=&quot;tit2&quot;&gt;id写法2 &lt;/p&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 编译前</span><br><span class="line"></span><br><span class="line">- var classArr = [&apos;small&apos;,&apos;medium&apos;,&apos;large&apos;]</span><br><span class="line">a(class= classArr)</span><br><span class="line">a.test(class = classArr class=[&apos;add&apos;])</span><br><span class="line"></span><br><span class="line">// 编译后</span><br><span class="line"></span><br><span class="line">&lt;a class=&quot;small medium large&quot;&gt;&lt;/a&gt;</span><br><span class="line">&lt;a class=&quot;test small medium large add&quot;&gt;&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//编译前</span><br><span class="line"></span><br><span class="line">- var active = &apos;select&apos;</span><br><span class="line">a(class=&#123;active: active === &apos;select&apos;&#125; )</span><br><span class="line"></span><br><span class="line">// 编译后</span><br><span class="line"></span><br><span class="line">&lt;a class=&quot;active&quot;&gt;&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>其他属性</strong><br>通过()来依次编写属性，多个用逗号分开</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//编译前</span><br><span class="line"></span><br><span class="line">a(class=&apos;baidu&apos; ,title=&apos;baidu&apos; href=&apos;www.baidu.com&apos;) 百度</span><br><span class="line"></span><br><span class="line">//编译后</span><br><span class="line"></span><br><span class="line">&lt;a class=&quot;baidu&quot; title=&quot;baidu&quot; href=&quot;www.baidu.com&quot;&gt;百度&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>也支持所有正常的 javascript 表达式</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 编译前</span><br><span class="line"></span><br><span class="line">- var flag  = true   //注意这里使用变量要记得添加-符号.</span><br><span class="line">h2(class=flag ? &apos;flag&apos;: &apos;&apos;)</span><br><span class="line"></span><br><span class="line">// 编译后</span><br><span class="line"></span><br><span class="line">&lt;h2 class=&quot;flag&quot;&gt;&lt;/h2&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>多个属性的另外写法</strong></p>
+</li>
+</ul>
+<p>其实就是换行缩进<br><code>pug // 编译前 a( title=&#39;baidu&#39;, href=&#39;www.baidu.com&#39;, class=&#39;links&#39; ) // 编译后 &lt;a class=&quot;links&quot; title=&quot;baidu&quot; href=&quot;www.baidu.com&quot;&gt;&lt;/a&gt;</code></p>
+<ul>
+<li><p><strong>引用属性</strong><br>如果你的属性名称包含了与 javascript 语法冲突的字符，请使用”或’引用，或者使用逗号分隔不同的属性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//(click)=&apos;play()&apos;,这里(click)会被当作一个函数调用而不是一个属性名字来解析.</span><br><span class="line"></span><br><span class="line">// 编译前</span><br><span class="line">div(class=&apos;div-class&apos; (click)=&apos;play()&apos;)</span><br><span class="line"></span><br><span class="line">// 编译后报错</span><br><span class="line">div(class=&apos;div-class&apos; (click)=&apos;play()&apos;)</span><br></pre></td></tr></table></figure>
+
+<p>正确写法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 编译前</span><br><span class="line">div(class=&apos;div-class&apos; &apos;(click)&apos;=&apos;play()&apos;)</span><br><span class="line">div(class=&apos;div-class&apos;, (click) = &apos;play()&apos;)</span><br><span class="line"></span><br><span class="line">// 编译后</span><br><span class="line">&lt;div class=&quot;div-class&quot; (click)=&quot;play()&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;div-class&quot; (click)=&quot;play()&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>属性插值</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 编译前</span><br><span class="line">- var url = &apos;demo.com&apos;</span><br><span class="line">a(href=&apos;/&apos; + url) links</span><br><span class="line">- var url2 = &apos;www.baidu.com&apos;</span><br><span class="line">a(href = url2 ) 百度</span><br><span class="line"></span><br><span class="line">// 编译后</span><br><span class="line">&lt;a href=&quot;/demo.com&quot;&gt;links&lt;/a&gt;</span><br><span class="line">&lt;a href=&quot;www.baidu.com&quot;&gt;百度  &lt;/a&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如果你的 javascript 运行环境支持 ES 2015.那么 Pug 支持模板字符串语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 编译前</span><br><span class="line">- var size1 = &apos;small&apos;</span><br><span class="line">- var size2 = &apos;medium&apos;</span><br><span class="line">- var size3 = &apos;large&apos;</span><br><span class="line">button(</span><br><span class="line">type=&apos;button&apos;,</span><br><span class="line">class=&apos;btn btn-&apos; + size1 + &apos; &apos; +  &apos;btn-&apos; + size2 + &apos; &apos; + &apos;btn-&apos; + size3</span><br><span class="line">)</span><br><span class="line">button(</span><br><span class="line">type=&apos;button&apos;,</span><br><span class="line">class=`btn btn-$(size1) btn-$(size2) btn(size3)`</span><br><span class="line">)</span><br><span class="line">// 编译后</span><br><span class="line">&lt;button class=&quot;btn btn-small btn-medium btn-large&quot; type=&quot;button&quot;&gt;&lt;/button&gt;</span><br><span class="line">&lt;button class=&quot;btn btn-small btn-medium btn-large&quot; type=&quot;button&quot;&gt;&lt;/button&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>未转义属性</strong></p>
+</li>
+</ul>
+<p>默认情况下，会转义所有属性（用转义序列代替特殊字符），以防止诸如跨站点脚本之类的攻击。 如果必须需要使用特殊字符，可以使用！=而不是=。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">// 编译前</span><br><span class="line">div(title=&quot;&lt;code&gt;&quot;)</span><br><span class="line">div(title!=&quot;&lt;code&gt;&quot;)</span><br><span class="line"></span><br><span class="line">    // 编译后</span><br><span class="line">    &lt;div title=&quot;&amp;lt;code&amp;gt;&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div title=&quot;&lt;code&gt;&quot;&gt;&lt;/div&gt;</span><br><span class="line">    ```</span><br><span class="line"></span><br><span class="line">- **布尔属性**</span><br><span class="line"></span><br><span class="line">布尔属性由 Pug 镜像，并接受布尔值（true 和 false）。 当没有指定值时，默认为 true。</span><br><span class="line">```pug</span><br><span class="line">// 编译前</span><br><span class="line">input(type=&apos;radio&apos; checked)</span><br><span class="line">input(type=&apos;radio&apos; checked=true)</span><br><span class="line">input(type=&apos;radio&apos; checked=false)</span><br><span class="line"></span><br><span class="line">    // 编译后</span><br><span class="line">    &lt;input type=&quot;radio&quot; checked&gt;</span><br><span class="line">    &lt;input type=&quot;radio&quot; checked&gt;</span><br><span class="line">    &lt;input type=&quot;radio&quot;&gt;</span><br><span class="line">    ```</span><br><span class="line"></span><br><span class="line">- **style 属性**</span><br><span class="line"></span><br><span class="line">style 属性可以是一个字符串（像任何普通属性），但它也可以是一个对象</span><br><span class="line">```pug</span><br><span class="line">// 编译前</span><br><span class="line">p(style=&#123;fontSize: &apos;14px&apos;,color: &apos;red&apos;&#125;)</span><br><span class="line"></span><br><span class="line">    // 编译后</span><br><span class="line">    &lt;p style=&quot;fontSize:14px;color:red;&quot;&gt;&lt;/p&gt;</span><br><span class="line">    ```</span><br><span class="line"></span><br><span class="line">### case</span><br><span class="line"></span><br><span class="line">case 语句是 JavaScript Switch 语句的缩写，并采用以下形式：</span><br><span class="line">```pug</span><br><span class="line">// 编译前 - var friendsNum = 4</span><br><span class="line">case friendsNum</span><br><span class="line">when 0</span><br><span class="line">p you have not friend</span><br><span class="line">when 1</span><br><span class="line">p you has one friend</span><br><span class="line">default</span><br><span class="line">p you has #&#123;friendsNum&#125; friends</span><br><span class="line"></span><br><span class="line">    // 编译后</span><br><span class="line">    &lt;p&gt;you has 4 friends    &lt;/p&gt;</span><br><span class="line">    ```</span><br><span class="line"></span><br><span class="line">### code</span><br><span class="line"></span><br><span class="line">Pug 可以在你的模板中编写内置的 JavaScript 代码。 有三种类型的代码。</span><br><span class="line"></span><br><span class="line">1. Unbuffered Code</span><br><span class="line">   不直接添加任何的输出</span><br><span class="line"></span><br><span class="line">   ```pug</span><br><span class="line">   // 编译前</span><br><span class="line">   - for(var i = 0; i &lt; 3;i++)</span><br><span class="line">       li item</span><br><span class="line"></span><br><span class="line">   // 编译后</span><br><span class="line">   &lt;li&gt;item&lt;/li&gt;</span><br><span class="line">   &lt;li&gt;item&lt;/li&gt;</span><br><span class="line">   &lt;li&gt;item&lt;/li&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 编译前</span><br><span class="line"></span><br><span class="line">- var nameList = [&apos;kobe&apos;,&apos;cpul&apos;,&apos;james&apos;]</span><br><span class="line">    each item in nameList</span><br><span class="line">        li=item</span><br><span class="line"></span><br><span class="line">// 编译后</span><br><span class="line"></span><br><span class="line">&lt;li&gt;kobe&lt;/li&gt;</span><br><span class="line">&lt;li&gt;cpul&lt;/li&gt;</span><br><span class="line">&lt;li&gt;james&lt;/li&gt;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/jade/" rel="tag"># jade</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2016/07/git%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="next" title="git的使用">
+                  <i class="fa fa-chevron-left"></i> git的使用
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2017/04/typescript%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E7%BC%96%E8%AF%91/" rel="prev" title="typescript的安装与编译">
+                  typescript的安装与编译 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#jade（Pug）"><span class="nav-number">1.</span> <span class="nav-text">jade（Pug）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jade-的优点"><span class="nav-number">2.</span> <span class="nav-text">jade 的优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jade-的编译方法"><span class="nav-number">3.</span> <span class="nav-text">jade 的编译方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jade-与-express"><span class="nav-number">4.</span> <span class="nav-text">jade 与 express</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jade-的-API"><span class="nav-number">5.</span> <span class="nav-text">jade 的 API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标签属性"><span class="nav-number">5.1.</span> <span class="nav-text">标签属性</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="dingcang"
+    src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">dingcang</p>
+  <div class="site-description" itemprop="description">something to write</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dingcang" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;dingcang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/d15538928689" title="Twitter &amp;rarr; https:&#x2F;&#x2F;twitter.com&#x2F;d15538928689" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.fengerzh.com/" title="https:&#x2F;&#x2F;www.fengerzh.com&#x2F;" rel="noopener" target="_blank">日新亭</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.niuxiaokui.top/" title="https:&#x2F;&#x2F;blog.niuxiaokui.top&#x2F;" rel="noopener" target="_blank">奔跑的牛</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2016 – 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-html5"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Front End Programer</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

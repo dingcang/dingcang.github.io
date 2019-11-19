@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"hide","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="vue-cli 集成 flexible链接：基于 vue-cli 配置移动端自适应 | Hzzlyvue-cli 构建项目在 index.html 中使用静态文件在 src 同一个目录下建立 static 文件夹（vue-cli 自身就有），所有的静态文件都必须在这个文件夹下，才能在 html 文件中调用到。因为 cli 启用了静态文件功能，在dev-server.js中可以看到这段代码">
+<meta name="keywords" content="vue,vue-cli">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue的使用">
+<meta property="og:url" content="https:&#x2F;&#x2F;dingcang.github.io&#x2F;2017&#x2F;06&#x2F;vue%E7%9A%84%E4%BD%BF%E7%94%A8&#x2F;index.html">
+<meta property="og:site_name" content="丁仓的Blog">
+<meta property="og:description" content="vue-cli 集成 flexible链接：基于 vue-cli 配置移动端自适应 | Hzzlyvue-cli 构建项目在 index.html 中使用静态文件在 src 同一个目录下建立 static 文件夹（vue-cli 自身就有），所有的静态文件都必须在这个文件夹下，才能在 html 文件中调用到。因为 cli 启用了静态文件功能，在dev-server.js中可以看到这段代码">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-06-22T06:53:22.000Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://dingcang.github.io/2017/06/vue%E7%9A%84%E4%BD%BF%E7%94%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>vue的使用 | 丁仓的Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">丁仓的Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://dingcang.github.io/2017/06/vue%E7%9A%84%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="dingcang">
+      <meta itemprop="description" content="something to write">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丁仓的Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          vue的使用
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-06-22 14:53:22" itemprop="dateCreated datePublished" datetime="2017-06-22T14:53:22+08:00">2017-06-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="vue-cli-集成-flexible"><a href="#vue-cli-集成-flexible" class="headerlink" title="vue-cli 集成 flexible"></a>vue-cli 集成 flexible</h2><p>链接：<a href="http://hjingren.cn/2017/06/16/%E5%9F%BA%E4%BA%8Evue-cli%E9%85%8D%E7%BD%AE%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%87%AA%E9%80%82%E5%BA%94/" target="_blank" rel="noopener"><strong>基于 vue-cli 配置移动端自适应 | Hzzly</strong></a></p><h2 id="vue-cli-构建项目在-index-html-中使用静态文件"><a href="#vue-cli-构建项目在-index-html-中使用静态文件" class="headerlink" title="vue-cli 构建项目在 index.html 中使用静态文件"></a>vue-cli 构建项目在 index.html 中使用静态文件</h2><p>在 src 同一个目录下建立 static 文件夹（vue-cli 自身就有），所有的静态文件都必须在这个文件夹下，才能在 html 文件中调用到。因为 cli 启用了静态文件功能，在<strong>dev-server.js</strong>中可以看到这段代码</p><a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// serve pure static assets</span><br><span class="line">var staticPath = path.posix.join(</span><br><span class="line">  config.dev.assetsPublicPath,</span><br><span class="line">  config.dev.assetsSubDirectory,</span><br><span class="line">)</span><br><span class="line">app.use(staticPath, express.static(&apos;./static&apos;))</span><br></pre></td></tr></table></figure>
+
+<p><strong>config/index.js</strong>中找到配置代码如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dev: &#123;</span><br><span class="line">    env: require('./dev.env'),</span><br><span class="line">    port: 8080,</span><br><span class="line">    autoOpenBrowser: true,</span><br><span class="line">    assetsSubDirectory: 'static',</span><br><span class="line">    assetsPublicPath: '/',</span><br></pre></td></tr></table></figure>
+
+<p>参考资料：<a href="http://www.cnblogs.com/zhuzhenwei918/p/6870361.html" target="_blank" rel="noopener"><strong>vue-cli 构建项目在 index.html 中使用静态文件 - JohnZhu - 博客园</strong></a></p>
+<h2 id="data-v-xxxxxxxx-””"><a href="#data-v-xxxxxxxx-””" class="headerlink" title="data-v-xxxxxxxx=””"></a><strong>data-v-xxxxxxxx</strong>=””</h2><p>如果 style 使用 scoped 属性,则该 style 标签内含的样式只会被本 vue 文件的元素使用。以<code>data-v-xxxxxx=&#39;&#39;</code>的形式展示</p>
+<p>参考资料：<a href="https://stackoverflow.com/questions/42701312/random-data-v-attribute-in-vue-js-components" target="_blank" rel="noopener">vuejs2 - random &quot;data-v-*&quot; attribute in Vue.js components - Stack Overflow</a></p>
+<h2 id="cli3-0-一些细节"><a href="#cli3-0-一些细节" class="headerlink" title="cli3.0 一些细节"></a>cli3.0 一些细节</h2><ul>
+<li><p>不同环境的全局变量</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.env                # 在所有的环境中被载入</span><br><span class="line">.env.local          # 在所有的环境中被载入，但会被 git 忽略</span><br><span class="line">.env.[mode]         # 只在指定的模式中被载入</span><br><span class="line">.env.[mode].local   # 只在指定的模式中被载入，但会被 git 忽略</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>默认有 development, production,test 三个环境，<code>BASE_URL</code> 和 <code>BASE_BASE_ENV</code> 两个变量。只有以 <code>VUE_APP_</code>开头的变量会被 webpack.DefinePlugin 静态嵌入到客户端侧的包中。</p>
+</blockquote>
+</li>
+<li><p>现代模式的编译</p>
+<blockquote>
+<p><code>vue-cli-service build --modern</code>会产生两个应用的版本：一个现代版的包，面向支持 ES modules 的现代浏览器，另一个旧版的包，面向不支持的旧浏览器。</p>
+</blockquote>
+<ul>
+<li>现代版的包会通过 <code>&lt;script type=&quot;module&quot;&gt;</code> 在被支持的浏览器中加载；它们还会使用 <code>&lt;link rel=&quot;modulepreload&quot;&gt;</code> 进行预加载。</li>
+<li>旧版的包会通过 <code>&lt;script nomodule&gt;</code> 加载，并会被支持 ES modules 的浏览器忽略。</li>
+</ul>
+</li>
+<li><p>生产环境取消 source map</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// vue.config.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  productionSourceMap: <span class="literal">false</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/vue/" rel="tag"># vue</a>
+              <a href="/tags/vue-cli/" rel="tag"># vue-cli</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2017/06/ES6%E6%96%B0%E7%89%B9%E6%80%A7/" rel="next" title="ES6的一些新特性">
+                  <i class="fa fa-chevron-left"></i> ES6的一些新特性
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2017/10/js%E7%9F%A5%E8%AF%86%E7%82%B9%E5%A4%8D%E4%B9%A0/" rel="prev" title="js知识点复习">
+                  js知识点复习 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-cli-集成-flexible"><span class="nav-number">1.</span> <span class="nav-text">vue-cli 集成 flexible</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-cli-构建项目在-index-html-中使用静态文件"><span class="nav-number">2.</span> <span class="nav-text">vue-cli 构建项目在 index.html 中使用静态文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#data-v-xxxxxxxx-””"><span class="nav-number">3.</span> <span class="nav-text">data-v-xxxxxxxx=””</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cli3-0-一些细节"><span class="nav-number">4.</span> <span class="nav-text">cli3.0 一些细节</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="dingcang"
+    src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">dingcang</p>
+  <div class="site-description" itemprop="description">something to write</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dingcang" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;dingcang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/d15538928689" title="Twitter &amp;rarr; https:&#x2F;&#x2F;twitter.com&#x2F;d15538928689" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.fengerzh.com/" title="https:&#x2F;&#x2F;www.fengerzh.com&#x2F;" rel="noopener" target="_blank">日新亭</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.niuxiaokui.top/" title="https:&#x2F;&#x2F;blog.niuxiaokui.top&#x2F;" rel="noopener" target="_blank">奔跑的牛</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2016 – 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-html5"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Front End Programer</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

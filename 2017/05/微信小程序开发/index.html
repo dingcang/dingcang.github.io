@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"hide","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="app.json 这个作为配置文件入口，记录了页面组成，配置小程序的窗口背景色，配置导航条样式，配置默认标题。    属性 类型 必填 描述    pages Array 是 设置页面路径   window Object 否 设置默认页面的窗口表现   tabBar Object 否 设置底部tab的表现   networkTimeout Obiect 否 设置网络超时时间   debug Boo">
+<meta name="keywords" content="微信小程序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信小程序开发">
+<meta property="og:url" content="https:&#x2F;&#x2F;dingcang.github.io&#x2F;2017&#x2F;05&#x2F;%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91&#x2F;index.html">
+<meta property="og:site_name" content="丁仓的Blog">
+<meta property="og:description" content="app.json 这个作为配置文件入口，记录了页面组成，配置小程序的窗口背景色，配置导航条样式，配置默认标题。    属性 类型 必填 描述    pages Array 是 设置页面路径   window Object 否 设置默认页面的窗口表现   tabBar Object 否 设置底部tab的表现   networkTimeout Obiect 否 设置网络超时时间   debug Boo">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-05-10T07:04:37.000Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://dingcang.github.io/2017/05/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>微信小程序开发 | 丁仓的Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">丁仓的Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://dingcang.github.io/2017/05/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="dingcang">
+      <meta itemprop="description" content="something to write">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丁仓的Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          微信小程序开发
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-05-10 15:04:37" itemprop="dateCreated datePublished" datetime="2017-05-10T15:04:37+08:00">2017-05-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">微信小程序</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="app-json"><a href="#app-json" class="headerlink" title="app.json"></a>app.json</h2><blockquote>
+<p>这个作为配置文件入口，记录了页面组成，配置小程序的窗口背景色，配置导航条样式，配置默认标题。</p>
+</blockquote><table>
+<thead>
+<tr>
+<th align="center">属性</th>
+<th align="center">类型</th>
+<th align="center">必填</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">pages</td>
+<td align="center">Array</td>
+<td align="center">是</td>
+<td align="center">设置页面路径</td>
+</tr>
+<tr>
+<td align="center"><strong>window</strong></td>
+<td align="center">Object</td>
+<td align="center">否</td>
+<td align="center">设置默认页面的窗口表现</td>
+</tr>
+<tr>
+<td align="center">tabBar</td>
+<td align="center">Object</td>
+<td align="center">否</td>
+<td align="center">设置底部tab的表现</td>
+</tr>
+<tr>
+<td align="center">networkTimeout</td>
+<td align="center">Obiect</td>
+<td align="center">否</td>
+<td align="center">设置网络超时时间</td>
+</tr>
+<tr>
+<td align="center">debug</td>
+<td align="center">Boolean</td>
+<td align="center">否</td>
+<td align="center">设置是否开启debug模式</td>
+</tr>
+</tbody></table><a id="more"></a>
+
+<p>window设置项：</p>
+<table>
+<thead>
+<tr>
+<th align="center">属性</th>
+<th align="center">类型</th>
+<th align="center">默认值</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">navigationBarBackgroundColor</td>
+<td align="center">HexColor</td>
+<td align="center">#000000</td>
+<td align="center">导航栏背景颜色</td>
+</tr>
+<tr>
+<td align="center">navigationBarTextStyle</td>
+<td align="center">String</td>
+<td align="center">white</td>
+<td align="center">导航栏标题颜色，仅支持white/black</td>
+</tr>
+<tr>
+<td align="center">navigationBarTitleText</td>
+<td align="center">String</td>
+<td align="center"></td>
+<td align="center">导航栏标题文字内容</td>
+</tr>
+</tbody></table>
+<h2 id="app-js"><a href="#app-js" class="headerlink" title="app.js"></a>app.js</h2><blockquote>
+<p>这个文件可以监听并处理小程序的生命周期函数、声明全局变量。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line">App(&#123;</span><br><span class="line">    onLaunch : <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">// do something</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'onLaunch'</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">     onShow : <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">// do something</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'onShow'</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    onHide :  <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">// do something</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'onHide'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>参数说明：</p>
+<table>
+<thead>
+<tr>
+<th align="center">属性</th>
+<th>类型</th>
+<th align="center">描述</th>
+<th align="center">触发时机</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">onLaunch</td>
+<td>Function</td>
+<td align="center">生命周期函数–监听小程序初始化</td>
+<td align="center">当小程序初始化完成时，会触发onLaunch（全局只触发一次）</td>
+</tr>
+<tr>
+<td align="center">onShow</td>
+<td>Function</td>
+<td align="center">生命周期函数–监听小程序显示</td>
+<td align="center">当小程序启动，或从后台进入前台显示，会触发</td>
+</tr>
+<tr>
+<td align="center">onHide</td>
+<td>Function</td>
+<td align="center">生命周期函数–监听小程序显示</td>
+<td align="center">当小程序从前台进入后台显示，会触发</td>
+</tr>
+<tr>
+<td align="center">其他</td>
+<td>Any</td>
+<td align="center">开发者可以添加任意的函数或数据到参数中，用this可以访问</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h2 id="小程序开发需要注意的一些细节"><a href="#小程序开发需要注意的一些细节" class="headerlink" title="小程序开发需要注意的一些细节"></a>小程序开发需要注意的一些细节</h2><ul>
+<li><strong>修改页面的背景色</strong></li>
+</ul>
+<p>解决办法：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">page</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">  <span class="attribute">min-height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>背景图片不支持相对路径</strong></li>
+</ul>
+<p>解决方法：使用image组件代替；或者使用绝对路径，使用绝对路径需要注意一点，在微信小程序官方平台后台设计允许访问的域名，不然请求不到。</p>
+<ul>
+<li><strong>微信小程序中使用组件地图map展示国外的地点</strong></li>
+</ul>
+<p>解决方法：微信小程序默认调用的是腾讯地图api，可尝试用<a href="http://lbsyun.baidu.com/index.php?title=wxjsapi" target="_blank" rel="noopener"><em>百度地图的小程序JavaScript API</em></a></p>
+<ul>
+<li><strong>微信小程序页面栈最高只有5层</strong></li>
+</ul>
+<p>解决方法：确定页面跳转逻辑，在需要的位置使用<a href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/app-service/route.html" target="_blank" rel="noopener">页面重定向redirectTo</a></p>
+<ul>
+<li><strong>网络请求的 referer</strong></li>
+</ul>
+<p>网络请求的 referer 是不可以设置的，格式固定为 <code>https://servicewechat.com/{appid}/{version}/page-frame.html</code>，其中 {appid} 为小程序的 appid，{version} 为小程序的版本号，版本号为 0 表示为开发版、体验版以及审核版本，版本号为 devtools 表示为开发者工具，其余为正式版本。</p>
+<ul>
+<li><strong>原生组件</strong></li>
+</ul>
+<p>map、canvas、video、textarea 是由客户端创建的原生组件，原生组件的层级是最高的，所以页面中的其他组件无论设置 z-index 为多少，都无法盖在原生组件上。 原生组件暂时还无法放在 scroll-view 上，也无法对原生组件设置 css 动画。</p>
+<ul>
+<li><strong>更多问题可以经常关注微信公众平台的开发者社区</strong></li>
+</ul>
+<p><a href="https://developers.weixin.qq.com/" target="_blank" rel="noopener">开发者社区</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag"># 微信小程序</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2017/04/typescript%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="next" title="typescript的数据类型">
+                  <i class="fa fa-chevron-left"></i> typescript的数据类型
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2017/06/ES6%E6%96%B0%E7%89%B9%E6%80%A7/" rel="prev" title="ES6的一些新特性">
+                  ES6的一些新特性 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#app-json"><span class="nav-number">1.</span> <span class="nav-text">app.json</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#app-js"><span class="nav-number">2.</span> <span class="nav-text">app.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小程序开发需要注意的一些细节"><span class="nav-number">3.</span> <span class="nav-text">小程序开发需要注意的一些细节</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="dingcang"
+    src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">dingcang</p>
+  <div class="site-description" itemprop="description">something to write</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dingcang" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;dingcang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/d15538928689" title="Twitter &amp;rarr; https:&#x2F;&#x2F;twitter.com&#x2F;d15538928689" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.fengerzh.com/" title="https:&#x2F;&#x2F;www.fengerzh.com&#x2F;" rel="noopener" target="_blank">日新亭</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.niuxiaokui.top/" title="https:&#x2F;&#x2F;blog.niuxiaokui.top&#x2F;" rel="noopener" target="_blank">奔跑的牛</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2016 – 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-html5"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Front End Programer</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
