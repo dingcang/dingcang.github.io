@@ -58,7 +58,7 @@
 <meta property="og:site_name" content="丁仓的Blog">
 <meta property="og:description" content="git召回历史版本删除的文件 使用 git 中经常会遇到删除了某些文件，当前没发现问题，知道几个甚至十几个版本后，卧槽，那个文件不该删的。这个时候就要去恢复这个文件了。方法如下 12git log &#x2F;&#x2F; 查看历史版本日志git reset commitid --hard &#x2F;&#x2F; 强制会退到某个提交版本之前">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-03-20T09:34:39.000Z">
+<meta property="og:updated_time" content="2020-05-07T05:25:35.000Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://dingcang.github.io/2016/07/git%E7%9A%84%E4%BD%BF%E7%94%A8/">
@@ -214,7 +214,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-20 17:34:39" itemprop="dateModified" datetime="2020-03-20T17:34:39+08:00">2020-03-20</time>
+                <time title="修改时间：2020-05-07 13:25:35" itemprop="dateModified" datetime="2020-05-07T13:25:35+08:00">2020-05-07</time>
               </span>
 
           
@@ -269,6 +269,7 @@
 </ul>
 <h2 id="git-patch-重命名输出文件名称"><a href="#git-patch-重命名输出文件名称" class="headerlink" title="git patch 重命名输出文件名称"></a>git patch 重命名输出文件名称</h2>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git format-patch --stdout &gt; [name].patch</span><br><span class="line"></span><br><span class="line"><span class="comment">## eg.</span></span><br><span class="line">git format-patch -1 --stdout &gt; bar.patch</span><br></pre></td></tr></table></figure>
 
+<h2 id="检出没有commit记录的新分支"><a href="#检出没有commit记录的新分支" class="headerlink" title="检出没有commit记录的新分支"></a>检出没有commit记录的新分支</h2>  <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git checkout --orphan=&lt;new branch name&gt; startPoint</span><br><span class="line"><span class="comment">## eg.</span></span><br><span class="line">git checkout --orphan=sso develop <span class="comment">## 表示从develop检出一个sso的新分支</span></span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -333,7 +334,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#git召回历史版本删除的文件"><span class="nav-number">1.</span> <span class="nav-text">git召回历史版本删除的文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git的一些问题"><span class="nav-number">2.</span> <span class="nav-text">git的一些问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git的四种忽略方式"><span class="nav-number">3.</span> <span class="nav-text">git的四种忽略方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git的一些技巧"><span class="nav-number">4.</span> <span class="nav-text">git的一些技巧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-patch-重命名输出文件名称"><span class="nav-number">5.</span> <span class="nav-text">git patch 重命名输出文件名称</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#git召回历史版本删除的文件"><span class="nav-number">1.</span> <span class="nav-text">git召回历史版本删除的文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git的一些问题"><span class="nav-number">2.</span> <span class="nav-text">git的一些问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git的四种忽略方式"><span class="nav-number">3.</span> <span class="nav-text">git的四种忽略方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git的一些技巧"><span class="nav-number">4.</span> <span class="nav-text">git的一些技巧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-patch-重命名输出文件名称"><span class="nav-number">5.</span> <span class="nav-text">git patch 重命名输出文件名称</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检出没有commit记录的新分支"><span class="nav-number">6.</span> <span class="nav-text">检出没有commit记录的新分支</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -362,7 +363,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-count">23</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
