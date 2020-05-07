@@ -183,6 +183,150 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://dingcang.github.io/2020/04/vps%E9%85%8D%E7%BD%AE%E5%A4%87%E5%BF%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="dingcang">
+      <meta itemprop="description" content="something to write">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丁仓的Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/vps%E9%85%8D%E7%BD%AE%E5%A4%87%E5%BF%98/" class="post-title-link" itemprop="url">vps配置备忘</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-24 20:52:39" itemprop="dateCreated datePublished" datetime="2020-04-24T20:52:39+08:00">2020-04-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-07 13:54:46" itemprop="dateModified" datetime="2020-05-07T13:54:46+08:00">2020-05-07</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="https证书"><a href="#https证书" class="headerlink" title="https证书"></a>https证书</h2><h3 id="生成证书"><a href="#生成证书" class="headerlink" title="生成证书"></a>生成证书</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get -y install certbot</span><br><span class="line">certbot certonly --webroot -w /var/www/html -d vps12am.top</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/04/vps%E9%85%8D%E7%BD%AE%E5%A4%87%E5%BF%98/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://dingcang.github.io/2019/02/Iterm2%E7%9A%84%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="dingcang">
+      <meta itemprop="description" content="something to write">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丁仓的Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/02/Iterm2%E7%9A%84%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">Iterm2的配置</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-02-19 18:16:50" itemprop="dateCreated datePublished" datetime="2019-02-19T18:16:50+08:00">2019-02-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-07 13:45:58" itemprop="dateModified" datetime="2020-05-07T13:45:58+08:00">2020-05-07</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Iterm2主题"><a href="#Iterm2主题" class="headerlink" title="Iterm2主题"></a>Iterm2主题</h2><p>  有很多人觉得mbp原生终端Terminal.app的界面很丑，不过我个人很喜欢，就像喜欢vs code的default dark主题一样，官方、简约、质感（这一点可能terminal没有）。然后我在给Iterm2找原生terminal的默认主题时，可能因为不可抗拒力的影响，先后四五次花了大量的时间都未果。最后准备放弃的时候，蓦然回首，那人却在灯火阑珊处。主题地址<a href="https://github.com/mbadolato/iTerm2-Color-Schemes/blob/master/schemes/Terminal%20Basic.itermcolors" target="_blank" rel="noopener">Terminal Basic</a>。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/02/Iterm2%E7%9A%84%E9%85%8D%E7%BD%AE/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://dingcang.github.io/2016/07/git%E7%9A%84%E4%BD%BF%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -257,78 +401,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://dingcang.github.io/2020/04/vps%E9%85%8D%E7%BD%AE%E5%A4%87%E5%BF%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="dingcang">
-      <meta itemprop="description" content="something to write">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丁仓的Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/vps%E9%85%8D%E7%BD%AE%E5%A4%87%E5%BF%98/" class="post-title-link" itemprop="url">vps配置备忘</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-24 20:52:39" itemprop="dateCreated datePublished" datetime="2020-04-24T20:52:39+08:00">2020-04-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-28 13:10:46" itemprop="dateModified" datetime="2020-04-28T13:10:46+08:00">2020-04-28</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="https证书"><a href="#https证书" class="headerlink" title="https证书"></a>https证书</h2><h3 id="生成证书"><a href="#生成证书" class="headerlink" title="生成证书"></a>生成证书</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get -y install certbot</span><br><span class="line">certbot certonly --webroot -w /var/www/html -d vps12am.top</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/04/vps%E9%85%8D%E7%BD%AE%E5%A4%87%E5%BF%98/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://dingcang.github.io/2019/08/spark%E5%85%A5%E9%97%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -369,7 +441,7 @@
       
           <h2 id="遇到的一些问题"><a href="#遇到的一些问题" class="headerlink" title="遇到的一些问题"></a>遇到的一些问题</h2><ul>
 <li>在zsh shell中执行<code>spark-shell --master local[2]</code>，报错<code>no matches found: local[2]</code></li>
-</ul><p>解决方案：<br>执行</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setopt nonomatch</span><br></pre></td></tr></table></figure>
+</ul><p>解决方案：<br>执行</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">setopt</span> nonomatch</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/08/spark%E5%85%A5%E9%97%A8/#more" rel="contents">
@@ -438,104 +510,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/07/css%E7%9A%84%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://dingcang.github.io/2019/02/Iterm2%E7%9A%84%E9%85%8D%E7%BD%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="dingcang">
-      <meta itemprop="description" content="something to write">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丁仓的Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/02/Iterm2%E7%9A%84%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">Iterm2的配置</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-02-19 18:16:50" itemprop="dateCreated datePublished" datetime="2019-02-19T18:16:50+08:00">2019-02-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-06-19 15:16:16" itemprop="dateModified" datetime="2019-06-19T15:16:16+08:00">2019-06-19</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="先上最终效果预览图"><a href="#先上最终效果预览图" class="headerlink" title="先上最终效果预览图"></a>先上最终效果预览图</h2><div style="display: inline-block; width: 50%"><img src="/images/Iterm2.png"></div><div style="display: inline-block; width: 50%"><img src="/images/terminal.png"></div><p>左侧为Iterm2，右侧为原生tereminal,下侧为Iterm2悬浮全屏<br><img src="/images/Iterm2-full-screen.png" alt="Iterm2-full-screen"></p><h2 id="配置的各种备忘"><a href="#配置的各种备忘" class="headerlink" title="配置的各种备忘"></a>配置的各种备忘</h2><h3 id="Iterm2自身主题以及oh-my-zsh主题"><a href="#Iterm2自身主题以及oh-my-zsh主题" class="headerlink" title="Iterm2自身主题以及oh my zsh主题"></a>Iterm2自身主题以及oh my zsh主题</h3><ul>
-<li><p>Iterm2主题</p>
-<p>有很多人觉得mbp原生终端Terminal.app的界面很丑，不过我个人很喜欢，就像喜欢vs code的default dark主题一样，官方、简约、质感（这一点可能terminal没有）。然后我在给Iterm2找原生terminal的默认主题时，可能因为不可抗拒力的影响，先后四五次花了大量的时间都未果。最后准备放弃的时候，蓦然回首，那人却在灯火阑珊处。主题地址<a href="https://github.com/mbadolato/iTerm2-Color-Schemes/blob/master/schemes/Terminal%20Basic.itermcolors" target="_blank" rel="noopener">Terminal Basic</a>。</p>
-<ol>
-<li>在setting &gt; Profiles &gt; Colors &gt; Color Presets &gt; Import 导入主题，记得选中主题后将<code>MInimum ConoTrast</code>的设置值拉到最左。</li>
-<li>在setting &gt; Profiles &gt; Text 中光标<code>Cursor</code>选择<code>Box</code>,不勾选<code>Blinking cursor</code>，字体渲染<code>Text Rendering</code>选择<code>Draw bold text in bold font</code>,<code>Use thin Strokes for anti-aliased text</code>选择<code>Never</code>,<code>Font</code>选择有两种，一种是vs code的默认首选字体<code>Menlo</code>，一种是原生terminal.app的<code>SF Mono Regular 11 磅</code>。字体我更偏向于<code>Menlo</code>，有一定的信仰值在其中，不过强迫症最后为了一致性，还是选择了<code>Mono</code>。<strong>记得是常规体 11 size</strong>。勾中<code>Anti-aliased</code>。时间有点久了，不过记得这里当时选择字体的时候是有个坑的，<code>Mono</code>默认在选择项中是找不到的，因为苹果个坑爹玩意很多终端的字体都给隐藏起来，不属于系统字体，就像不通过finder的前往文件夹或者shell你根本到不了<code>/</code>根目录。你可以通过google <strong><code>iterm2 use system font</code></strong>找到这么一篇教程<a href="http://osxdaily.com/2018/01/07/use-sf-mono-font-mac/" target="_blank" rel="noopener"><strong>How to Install &amp; Use SF Mono Font on Mac with Other Apps</strong></a>，挺容易明白的，如果看不懂，该提高一下英语水平了。</li>
-<li>在setting &gt; Profiles &gt; Window 中将<code>Setting for New Windows</code>的<code>Columns</code>设置为80，<code>Rows</code>设置为24</li>
-</ol>
-</li>
-<li><p>oh my zsh 主题</p>
-<p>oh-my-zsh有很多漂亮的主题，你可以从官方的<a href="https://github.com/robbyrussell/oh-my-zsh/wiki/Themes" target="_blank" rel="noopener">主题wiki</a>中看，或者在电脑的<code>~/.oh-my-zsh/themes</code>路径下找到，我使用的是<code>steeef</code>这款主题，在mbp的显示屏上是相当的细腻好看。然后还要安装一些oh-my-zsh的插件来提升效率：</p>
-<ol>
-<li><p>自动补齐插件</p>
-<p> 使用的是<a href="https://github.com/zsh-users/zsh-autosuggestions" target="_blank" rel="noopener">zsh-autosuggestions</a>，clone这个项目到<code>~/.oh-my-zsh/plugins</code>目录，在配置文件<code>.zshrc</code>的插件选项栏中加上</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">plugins=(</span><br><span class="line"><span class="meta">  #</span><span class="bash"> git</span></span><br><span class="line"><span class="meta">  #</span><span class="bash"> autojump</span></span><br><span class="line">  zsh-autosuggestions</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p> 然后可以通过<code>source</code>命令立即生效修改后的配置文件，<code>source ~/.zshrc</code></p>
-</li>
-<li><p>自动跳转插件</p>
-<p> 安装autojump，<code>brew install autojump</code><br> 在配置文件<code>.zshrc</code>的插件选项栏中加上</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">plugins=(</span><br><span class="line"><span class="meta">  #</span><span class="bash"> git</span></span><br><span class="line">  autojump</span><br><span class="line"><span class="meta">  #</span><span class="bash"> zsh-autosuggestions</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p> 记得<code>source</code>立即生效</p>
-</li>
-</ol>
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/02/Iterm2%E7%9A%84%E9%85%8D%E7%BD%AE/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

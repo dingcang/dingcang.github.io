@@ -235,7 +235,7 @@
 </li>
 </ul>
 <p>原因，在电脑上新装的mysql是8.0.x版本的，默认root用户的密码加密使用了plugin <strong>caching_sha2_password</strong>，而navicat不支持。把插件设置改回默认的 <strong>mysql_native_password</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">brew list mysql #查询mysql的配置文件my.cnf的路径</span><br><span class="line">vi /....../my.cnf #my.cnf的绝对路径</span><br><span class="line"><span class="meta">#</span><span class="bash">新一行添加 default_authentication_plugin=mysql_native_password</span></span><br><span class="line">brew services restart mysql</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">brew list mysql <span class="comment">#查询mysql的配置文件my.cnf的路径</span></span><br><span class="line">vi /....../my.cnf <span class="comment">#my.cnf的绝对路径</span></span><br><span class="line"><span class="comment">#新一行添加 default_authentication_plugin=mysql_native_password</span></span><br><span class="line">brew services restart mysql</span><br></pre></td></tr></table></figure>
 
 <p>or</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER USER &apos;root&apos;@&apos;host&apos; IDENTIFIED WITH mysql_native_password BY &apos;password&apos;; #从命令行进入mysql数据库后更改</span><br></pre></td></tr></table></figure>

@@ -51,14 +51,14 @@
 </script>
 
   <meta name="description" content="https证书生成证书12sudo apt-get -y install certbotcertbot certonly --webroot -w &#x2F;var&#x2F;www&#x2F;html -d vps12am.top">
-<meta name="keywords" content="nginx,vps,https">
+<meta name="keywords" content="vps,https,nginx">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vps配置备忘">
 <meta property="og:url" content="https:&#x2F;&#x2F;dingcang.github.io&#x2F;2020&#x2F;04&#x2F;vps%E9%85%8D%E7%BD%AE%E5%A4%87%E5%BF%98&#x2F;index.html">
 <meta property="og:site_name" content="丁仓的Blog">
 <meta property="og:description" content="https证书生成证书12sudo apt-get -y install certbotcertbot certonly --webroot -w &#x2F;var&#x2F;www&#x2F;html -d vps12am.top">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-28T05:10:46.987Z">
+<meta property="og:updated_time" content="2020-05-07T05:54:46.646Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://dingcang.github.io/2020/04/vps%E9%85%8D%E7%BD%AE%E5%A4%87%E5%BF%98/">
@@ -214,7 +214,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-28 13:10:46" itemprop="dateModified" datetime="2020-04-28T13:10:46+08:00">2020-04-28</time>
+                <time title="修改时间：2020-05-07 13:54:46" itemprop="dateModified" datetime="2020-05-07T13:54:46+08:00">2020-05-07</time>
               </span>
 
           
@@ -228,19 +228,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="https证书"><a href="#https证书" class="headerlink" title="https证书"></a>https证书</h2><h3 id="生成证书"><a href="#生成证书" class="headerlink" title="生成证书"></a>生成证书</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get -y install certbot</span><br><span class="line">certbot certonly --webroot -w /var/www/html -d vps12am.top</span><br></pre></td></tr></table></figure><a id="more"></a>
+        <h2 id="https证书"><a href="#https证书" class="headerlink" title="https证书"></a>https证书</h2><h3 id="生成证书"><a href="#生成证书" class="headerlink" title="生成证书"></a>生成证书</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get -y install certbot</span><br><span class="line">certbot certonly --webroot -w /var/www/html -d vps12am.top</span><br></pre></td></tr></table></figure><a id="more"></a>
 
-<h3 id="证书续期"><a href="#证书续期" class="headerlink" title="证书续期"></a>证书续期</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">crontab -e</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 定时任务 每12小时尝试续期一次</span></span><br><span class="line">0 */12 * * * certbot renew --quiet --renew-hook "nginx -s reload"</span><br></pre></td></tr></table></figure>
+<h3 id="证书续期"><a href="#证书续期" class="headerlink" title="证书续期"></a>证书续期</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">crontab -e</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定时任务 每12小时尝试续期一次</span></span><br><span class="line">0 */12 * * * certbot renew --quiet --renew-hook <span class="string">"nginx -s reload"</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="证书生成问题"><a href="#证书生成问题" class="headerlink" title="证书生成问题"></a>证书生成问题</h3><ul>
 <li><p>Another instance of Certbot is already running.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find / -type f -name ".certbot.lock"</span><br><span class="line">find / -type f -name ".certbot.lock" -exec rm &#123;&#125; \;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find / -<span class="built_in">type</span> f -name <span class="string">".certbot.lock"</span></span><br><span class="line">find / -<span class="built_in">type</span> f -name <span class="string">".certbot.lock"</span> -<span class="built_in">exec</span> rm &#123;&#125; \;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
 <h2 id="nginx-server配置"><a href="#nginx-server配置" class="headerlink" title="nginx server配置"></a>nginx server配置</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">443</span> ssl;</span><br><span class="line">    <span class="attribute">ssl</span> <span class="literal">on</span>;</span><br><span class="line">    <span class="attribute">ssl_certificate</span>   /etc/letsencrypt/live/vps12am.top/fullchain.pem;</span><br><span class="line">    <span class="attribute">ssl_certificate_key</span>  /etc/letsencrypt/live/vps12am.top/privkey.pem;</span><br><span class="line">    <span class="attribute">ssl_session_timeout</span> <span class="number">5m</span>;</span><br><span class="line">    <span class="attribute">ssl_ciphers</span> ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;</span><br><span class="line">    <span class="attribute">ssl_protocols</span> TLSv1 TLSv1.<span class="number">1</span> TLSv1.<span class="number">2</span>;</span><br><span class="line">    <span class="attribute">ssl_prefer_server_ciphers</span> <span class="literal">on</span>;</span><br><span class="line">    <span class="attribute">server_name</span> vps12am.top;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">client_max_body_size</span> <span class="number">1024M</span>;</span><br><span class="line">    <span class="attribute">access_log</span> /var/log/nginx/blog_access.log;</span><br><span class="line">    <span class="attribute">error_log</span> /var/log/nginx/blog_error.log;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">        <span class="attribute">proxy_redirect</span> <span class="literal">off</span>;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://127.0.0.1:8888;</span><br><span class="line">        <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> Connection <span class="string">"upgrade"</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> Host <span class="variable">$http_host</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Show realip in v2ray access.log</span></span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="v2ray部署一键脚本"><a href="#v2ray部署一键脚本" class="headerlink" title="v2ray部署一键脚本"></a>v2ray部署一键脚本</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash &lt;(curl -s -L https://git.io/v2ray.sh)</span><br></pre></td></tr></table></figure>
+<h2 id="v2ray部署一键脚本"><a href="#v2ray部署一键脚本" class="headerlink" title="v2ray部署一键脚本"></a>v2ray部署一键脚本</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash &lt;(curl -s -L https://git.io/v2ray.sh)</span><br></pre></td></tr></table></figure>
 
 <h2 id="cloudflare分发vps"><a href="#cloudflare分发vps" class="headerlink" title="cloudflare分发vps"></a>cloudflare分发vps</h2><ol>
 <li>在cloudflare中增加域名</li>
@@ -256,9 +256,9 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/nginx/" rel="tag"># nginx</a>
               <a href="/tags/vps/" rel="tag"># vps</a>
               <a href="/tags/https/" rel="tag"># https</a>
+              <a href="/tags/nginx/" rel="tag"># nginx</a>
           </div>
 
         

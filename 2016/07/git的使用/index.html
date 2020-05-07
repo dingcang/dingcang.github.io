@@ -235,7 +235,7 @@
 
 <h2 id="git的一些问题"><a href="#git的一些问题" class="headerlink" title="git的一些问题"></a>git的一些问题</h2><ul>
 <li><p>git clone时报错：<code>warning: unable to access &#39;/Users/dc/.config/git/attributes&#39;: Permission denied</code><br>需要给当前用户添加权限</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd ~/</span><br><span class="line">ls -al</span><br><span class="line">&lt;Noticed .config was owned by root, unlike everything else in $HOME&gt;</span><br><span class="line">sudo chown my_user_name .config</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/</span><br><span class="line">ls -al</span><br><span class="line">&lt;Noticed .config was owned by root, unlike everything <span class="keyword">else</span> <span class="keyword">in</span> <span class="variable">$HOME</span>&gt;</span><br><span class="line">sudo chown my_user_name .config</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
@@ -270,6 +270,7 @@
 <h2 id="git-patch-重命名输出文件名称"><a href="#git-patch-重命名输出文件名称" class="headerlink" title="git patch 重命名输出文件名称"></a>git patch 重命名输出文件名称</h2>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git format-patch --stdout &gt; [name].patch</span><br><span class="line"></span><br><span class="line"><span class="comment">## eg.</span></span><br><span class="line">git format-patch -1 --stdout &gt; bar.patch</span><br></pre></td></tr></table></figure>
 
 <h2 id="检出没有commit记录的新分支"><a href="#检出没有commit记录的新分支" class="headerlink" title="检出没有commit记录的新分支"></a>检出没有commit记录的新分支</h2>  <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git checkout --orphan=&lt;new branch name&gt; startPoint</span><br><span class="line"><span class="comment">## eg.</span></span><br><span class="line">git checkout --orphan=sso develop <span class="comment">## 表示从develop检出一个sso的新分支</span></span><br></pre></td></tr></table></figure>
+
     </div>
 
     
