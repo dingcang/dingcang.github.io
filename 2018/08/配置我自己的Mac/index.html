@@ -50,13 +50,13 @@
   };
 </script>
 
-  <meta name="description" content="预装软件工具 xcode homebrew node.js npm typescript eslint tslint vue-cli hexo-cli @angular&#x2F;cli alfred-google-translate express-generator npm-check-updates   yarn git nginx go fish（已弃用，改投oh-my-zsh大法） autojum">
-<meta name="keywords" content="macOS">
+  <meta name="description" content="Mac的目录结构 因为 Mac 属于一种类 Unix 系统，因此 Mac OS X 目录 = Unix 系统通用目录 + 独有目录，Mac OS X 已经是被认证的 Unix 系统，所以其目录结构基本符合 Unix 系统目录结构。">
+<meta name="keywords" content="macOS,Charles,Shadowsocks">
 <meta property="og:type" content="article">
 <meta property="og:title" content="配置我自己的Mac">
 <meta property="og:url" content="https:&#x2F;&#x2F;dingcang.github.io&#x2F;2018&#x2F;08&#x2F;%E9%85%8D%E7%BD%AE%E6%88%91%E8%87%AA%E5%B7%B1%E7%9A%84Mac&#x2F;index.html">
 <meta property="og:site_name" content="丁仓的Blog">
-<meta property="og:description" content="预装软件工具 xcode homebrew node.js npm typescript eslint tslint vue-cli hexo-cli @angular&#x2F;cli alfred-google-translate express-generator npm-check-updates   yarn git nginx go fish（已弃用，改投oh-my-zsh大法） autojum">
+<meta property="og:description" content="Mac的目录结构 因为 Mac 属于一种类 Unix 系统，因此 Mac OS X 目录 = Unix 系统通用目录 + 独有目录，Mac OS X 已经是被认证的 Unix 系统，所以其目录结构基本符合 Unix 系统目录结构。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-08-12T12:28:20.000Z">
 <meta name="twitter:card" content="summary">
@@ -209,6 +209,17 @@
 
               <time title="创建时间：2018-08-12 20:28:20" itemprop="dateCreated datePublished" datetime="2018-08-12T20:28:20+08:00">2018-08-12</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+            </span>
 
           
 
@@ -221,7 +232,34 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="预装软件工具"><a href="#预装软件工具" class="headerlink" title="预装软件工具"></a>预装软件工具</h2><ul>
+        <h2 id="Mac的目录结构"><a href="#Mac的目录结构" class="headerlink" title="Mac的目录结构"></a>Mac的目录结构</h2><blockquote>
+<p>因为 Mac 属于一种类 Unix 系统，因此 <strong>Mac OS X 目录</strong> = <strong>Unix 系统通用目录</strong> + <strong>独有目录</strong>，Mac OS X 已经是被认证的 Unix 系统，所以其目录结构基本符合 Unix 系统目录结构。</p>
+</blockquote><a id="more"></a>
+<h3 id="Unix-通用目录"><a href="#Unix-通用目录" class="headerlink" title="Unix 通用目录"></a>Unix 通用目录</h3><ol>
+<li>/bin 传统 unix 命令的存放目录，如 ls，rm，mv 等。</li>
+<li>/sbin 传统 unix 管理类命令存放目录，如 fdisk，ifconfig 等等。</li>
+<li>/usr 第三方程序安装目录。</li>
+<li>/dev 设备文件存放目录，如何代表硬盘的/dev/disk0。</li>
+<li>/usr/bin, /usr/sbin, /usr/lib，其中/usr/lib 目录中存放了共享库（动态链接库）。</li>
+<li>/etc 标准 unix 系统配置文件存放目录，如用户密码文件/etc/passwd。此目录实际为指向/private/etc 的链接。</li>
+<li>/tmp 临时文件存放目录，其权限为所有人任意读写。此目录实际为指向/private/tmp 的链接。</li>
+<li>/var 存放经常变化的文件，如日志文件。此目录实际为指向/private/var 的链接。</li>
+</ol>
+<h3 id="MacOS-独有目录"><a href="#MacOS-独有目录" class="headerlink" title="MacOS 独有目录"></a>MacOS 独有目录</h3><ol>
+<li>/Applications 应用程序目录，默认所有的 GUI 应用程序都安装在这里</li>
+<li>/Library 系统的数据文件、帮助文件、文档等等</li>
+<li>/Network 网络节点存放目录</li>
+<li>/System 只包含一个名为 Library 的目录，这个子目录中存放了系统的绝大部分组件，如各种 framework，以及内核模块，字体文件等等。</li>
+<li>/Users 存放用户的个人资料和配置。每个用户有自己的单独目录。</li>
+<li>/Volumes 文件系统挂载点存放目录。</li>
+<li>/cores 内核转储文件存放目录。当一个进程崩溃时，如果系统允许则会产生转储文件。</li>
+<li>/private 里面的子目录存放了/tmp, /var, /etc 等链接目录的目标目录。</li>
+</ol>
+<h3 id="关于-usr-local-和-opt-目录"><a href="#关于-usr-local-和-opt-目录" class="headerlink" title="关于/usr/local 和 opt 目录"></a>关于/usr/local 和 opt 目录</h3><ol>
+<li>/usr/local 下一般是你安装软件的目录，这个目录就相当于在 windows 下的 programefiles 这个目录</li>
+<li>/opt 这个目录是一些大型软件的安装目录，或者是一些服务程序的安装目录</li>
+</ol>
+<h2 id="预装软件工具"><a href="#预装软件工具" class="headerlink" title="预装软件工具"></a>预装软件工具</h2><ul>
 <li>xcode</li>
 <li><a href="https://brew.sh/" target="_blank" rel="noopener">homebrew</a><ul>
 <li>node.js</li>
@@ -260,7 +298,7 @@
 <li><a href="https://www.google.com/chrome/" target="_blank" rel="noopener">chrome</a></li>
 <li>git</li>
 <li><a href="https://shadowsocks.org/en/download/clients.html" target="_blank" rel="noopener">shadowsocks</a></li>
-</ul><a id="more"></a>
+</ul>
 <h2 id="rar-压缩工具的安装"><a href="#rar-压缩工具的安装" class="headerlink" title="rar 压缩工具的安装"></a>rar 压缩工具的安装</h2><ul>
 <li>brew intsall unrar</li>
 </ul>
@@ -290,33 +328,6 @@
 </blockquote>
 </li>
 </ul>
-<h2 id="Mac的目录结构"><a href="#Mac的目录结构" class="headerlink" title="Mac的目录结构"></a>Mac的目录结构</h2><blockquote>
-<p>因为 Mac 属于一种类 Unix 系统，因此 <strong>Mac OS X 目录</strong> = <strong>Unix 系统通用目录</strong> + <strong>独有目录</strong>，Mac OS X 已经是被认证的 Unix 系统，所以其目录结构基本符合 Unix 系统目录结构。</p>
-</blockquote>
-<h3 id="Unix-通用目录"><a href="#Unix-通用目录" class="headerlink" title="Unix 通用目录"></a>Unix 通用目录</h3><ol>
-<li>/bin 传统 unix 命令的存放目录，如 ls，rm，mv 等。</li>
-<li>/sbin 传统 unix 管理类命令存放目录，如 fdisk，ifconfig 等等。</li>
-<li>/usr 第三方程序安装目录。</li>
-<li>/dev 设备文件存放目录，如何代表硬盘的/dev/disk0。</li>
-<li>/usr/bin, /usr/sbin, /usr/lib，其中/usr/lib 目录中存放了共享库（动态链接库）。</li>
-<li>/etc 标准 unix 系统配置文件存放目录，如用户密码文件/etc/passwd。此目录实际为指向/private/etc 的链接。</li>
-<li>/tmp 临时文件存放目录，其权限为所有人任意读写。此目录实际为指向/private/tmp 的链接。</li>
-<li>/var 存放经常变化的文件，如日志文件。此目录实际为指向/private/var 的链接。</li>
-</ol>
-<h3 id="MacOS-独有目录"><a href="#MacOS-独有目录" class="headerlink" title="MacOS 独有目录"></a>MacOS 独有目录</h3><ol>
-<li>/Applications 应用程序目录，默认所有的 GUI 应用程序都安装在这里</li>
-<li>/Library 系统的数据文件、帮助文件、文档等等</li>
-<li>/Network 网络节点存放目录</li>
-<li>/System 只包含一个名为 Library 的目录，这个子目录中存放了系统的绝大部分组件，如各种 framework，以及内核模块，字体文件等等。</li>
-<li>/Users 存放用户的个人资料和配置。每个用户有自己的单独目录。</li>
-<li>/Volumes 文件系统挂载点存放目录。</li>
-<li>/cores 内核转储文件存放目录。当一个进程崩溃时，如果系统允许则会产生转储文件。</li>
-<li>/private 里面的子目录存放了/tmp, /var, /etc 等链接目录的目标目录。</li>
-</ol>
-<h3 id="关于-usr-local-和-opt-目录"><a href="#关于-usr-local-和-opt-目录" class="headerlink" title="关于/usr/local 和 opt 目录"></a>关于/usr/local 和 opt 目录</h3><ol>
-<li>/usr/local 下一般是你安装软件的目录，这个目录就相当于在 windows 下的 programefiles 这个目录</li>
-<li>/opt 这个目录是一些大型软件的安装目录，或者是一些服务程序的安装目录</li>
-</ol>
 
     </div>
 
@@ -327,6 +338,8 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/macOS/" rel="tag"># macOS</a>
+              <a href="/tags/Charles/" rel="tag"># Charles</a>
+              <a href="/tags/Shadowsocks/" rel="tag"># Shadowsocks</a>
           </div>
 
         
@@ -382,7 +395,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#预装软件工具"><span class="nav-number">1.</span> <span class="nav-text">预装软件工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rar-压缩工具的安装"><span class="nav-number">2.</span> <span class="nav-text">rar 压缩工具的安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境变量的加载顺序"><span class="nav-number">3.</span> <span class="nav-text">环境变量的加载顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java-的安装"><span class="nav-number">4.</span> <span class="nav-text">java 的安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遇到的一些问题"><span class="nav-number">5.</span> <span class="nav-text">遇到的一些问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mac的目录结构"><span class="nav-number">6.</span> <span class="nav-text">Mac的目录结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Unix-通用目录"><span class="nav-number">6.1.</span> <span class="nav-text">Unix 通用目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MacOS-独有目录"><span class="nav-number">6.2.</span> <span class="nav-text">MacOS 独有目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于-usr-local-和-opt-目录"><span class="nav-number">6.3.</span> <span class="nav-text">关于/usr/local 和 opt 目录</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Mac的目录结构"><span class="nav-number">1.</span> <span class="nav-text">Mac的目录结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Unix-通用目录"><span class="nav-number">1.1.</span> <span class="nav-text">Unix 通用目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MacOS-独有目录"><span class="nav-number">1.2.</span> <span class="nav-text">MacOS 独有目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于-usr-local-和-opt-目录"><span class="nav-number">1.3.</span> <span class="nav-text">关于/usr/local 和 opt 目录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#预装软件工具"><span class="nav-number">2.</span> <span class="nav-text">预装软件工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rar-压缩工具的安装"><span class="nav-number">3.</span> <span class="nav-text">rar 压缩工具的安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境变量的加载顺序"><span class="nav-number">4.</span> <span class="nav-text">环境变量的加载顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#java-的安装"><span class="nav-number">5.</span> <span class="nav-text">java 的安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遇到的一些问题"><span class="nav-number">6.</span> <span class="nav-text">遇到的一些问题</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -398,20 +411,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

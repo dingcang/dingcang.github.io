@@ -222,8 +222,8 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/typescript/" itemprop="url" rel="index">
-                    <span itemprop="name">typescript</span>
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
                   </a>
                 </span>
             </span>
@@ -244,7 +244,7 @@
 </ol><p><code>$ npm install -g typescript</code><br>2. 通过与VS 2012继承的<strong><a href="https://marketplace.visualstudio.com/items?itemName=TypeScriptTeam.TypeScript10ToolsforVisualStudio2012" target="_blank" rel="noopener">MSI</a></strong></p><h2 id="编译typescript文件"><a href="#编译typescript文件" class="headerlink" title="编译typescript文件"></a>编译typescript文件</h2><p>  <code>$ tsc xxx.ts //xxx为文件名</code></p><a id="more"></a>
 
 
-<h2 id="编辑tsconfig-json"><a href="#编辑tsconfig-json" class="headerlink" title="编辑tsconfig.json"></a>编辑tsconfig.json</h2><h3 id="tsconfig-json用来设置ts的编译选项。可以在指定目录生成一份该配置文件："><a href="#tsconfig-json用来设置ts的编译选项。可以在指定目录生成一份该配置文件：" class="headerlink" title="tsconfig.json用来设置ts的编译选项。可以在指定目录生成一份该配置文件："></a>tsconfig.json用来设置ts的编译选项。可以在指定目录生成一份该配置文件：</h3><p> <code>$ tsc -init</code></p>
+<h2 id="编辑tsconfig-json"><a href="#编辑tsconfig-json" class="headerlink" title="编辑tsconfig.json"></a>编辑tsconfig.json</h2><h3 id="tsconfig-json用来设置ts的编译选项。可以在指定目录生成一份该配置文件"><a href="#tsconfig-json用来设置ts的编译选项。可以在指定目录生成一份该配置文件" class="headerlink" title="tsconfig.json用来设置ts的编译选项。可以在指定目录生成一份该配置文件"></a>tsconfig.json用来设置ts的编译选项。可以在指定目录生成一份该配置文件</h3><p> <code>$ tsc -init</code></p>
 <h3 id="编写需要的配置项"><a href="#编写需要的配置项" class="headerlink" title="编写需要的配置项"></a>编写需要的配置项</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"compilerOptions"</span>: &#123;</span><br><span class="line">        <span class="attr">"module"</span>: <span class="string">"commonjs"</span>,   <span class="comment">//指定生成哪个模块系统代码</span></span><br><span class="line">        <span class="attr">"target"</span>: <span class="string">"es6"</span>,        <span class="comment">//目标代码类型</span></span><br><span class="line">        <span class="attr">"noImplicitAny"</span>: <span class="literal">false</span>, <span class="comment">//在表达式和声明上有隐含的'any'类型时报错。</span></span><br><span class="line">        <span class="attr">"sourceMap"</span>: <span class="literal">false</span>,     <span class="comment">//用于debug</span></span><br><span class="line">        <span class="attr">"rootDir"</span>:<span class="string">"./src"</span>,      <span class="comment">//仅用来控制输出的目录结构--outDir。</span></span><br><span class="line">        <span class="attr">"outDir"</span>:<span class="string">"./build"</span>,     <span class="comment">//重定向输出目录。</span></span><br><span class="line">        <span class="attr">"watch"</span>:<span class="literal">true</span>            <span class="comment">//在监视模式下运行编译器。会监视输出文件，在它们改变时重新编译。</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"include"</span>:[</span><br><span class="line">        <span class="string">"./src/**/*"</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">"exclude"</span>:[</span><br><span class="line">        <span class="string">"views"</span>,</span><br><span class="line">        <span class="string">"static"</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="配置文件注意点"><a href="#配置文件注意点" class="headerlink" title="配置文件注意点"></a>配置文件注意点</h3><p><code>&quot;compilerOptions&quot;</code>是编译选项。</p>
@@ -318,7 +318,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装typescript"><span class="nav-number">1.</span> <span class="nav-text">安装typescript</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译typescript文件"><span class="nav-number">2.</span> <span class="nav-text">编译typescript文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编辑tsconfig-json"><span class="nav-number">3.</span> <span class="nav-text">编辑tsconfig.json</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tsconfig-json用来设置ts的编译选项。可以在指定目录生成一份该配置文件："><span class="nav-number">3.1.</span> <span class="nav-text">tsconfig.json用来设置ts的编译选项。可以在指定目录生成一份该配置文件：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编写需要的配置项"><span class="nav-number">3.2.</span> <span class="nav-text">编写需要的配置项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置文件注意点"><span class="nav-number">3.3.</span> <span class="nav-text">配置文件注意点</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装typescript"><span class="nav-number">1.</span> <span class="nav-text">安装typescript</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译typescript文件"><span class="nav-number">2.</span> <span class="nav-text">编译typescript文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编辑tsconfig-json"><span class="nav-number">3.</span> <span class="nav-text">编辑tsconfig.json</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tsconfig-json用来设置ts的编译选项。可以在指定目录生成一份该配置文件"><span class="nav-number">3.1.</span> <span class="nav-text">tsconfig.json用来设置ts的编译选项。可以在指定目录生成一份该配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编写需要的配置项"><span class="nav-number">3.2.</span> <span class="nav-text">编写需要的配置项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置文件注意点"><span class="nav-number">3.3.</span> <span class="nav-text">配置文件注意点</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -334,20 +334,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
