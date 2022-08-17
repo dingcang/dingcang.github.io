@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"dingcang.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"style":null,"show_result":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="目录结构 &#x2F;bin - 系统级的组件 &#x2F;etc - 可配置文件 &#x2F;sbin - 根用户才能访问 &#x2F;usr - 可执行文件 &#x2F;usr&#x2F;bin - 系统提供的应用程序 &#x2F;usr&#x2F;local&#x2F;bin - 用户自己安装的应用程序 brew安装的都在这个位置   &#x2F;var - 日志等 &#x2F;tmp -">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux学习">
+<meta property="og:url" content="https://dingcang.github.io/2017/12/linux%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="丁仓的Blog">
+<meta property="og:description" content="目录结构 &#x2F;bin - 系统级的组件 &#x2F;etc - 可配置文件 &#x2F;sbin - 根用户才能访问 &#x2F;usr - 可执行文件 &#x2F;usr&#x2F;bin - 系统提供的应用程序 &#x2F;usr&#x2F;local&#x2F;bin - 用户自己安装的应用程序 brew安装的都在这个位置   &#x2F;var - 日志等 &#x2F;tmp -">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-12-29T08:53:54.000Z">
+<meta property="article:modified_time" content="2020-06-17T03:17:46.000Z">
+<meta property="article:author" content="dingcang">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://dingcang.github.io/2017/12/linux%E5%AD%A6%E4%B9%A0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://dingcang.github.io/2017/12/linux%E5%AD%A6%E4%B9%A0/","path":"2017/12/linux学习/","title":"Linux学习"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Linux学习 | 丁仓的Blog</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">丁仓的Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">目录结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E5%A4%87%E5%BF%98%E5%91%BD%E4%BB%A4"><span class="nav-number">2.</span> <span class="nav-text">一些备忘命令</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="dingcang"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">dingcang</p>
+  <div class="site-description" itemprop="description">something to write</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dingcang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;dingcang" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/d15538928689" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;d15538928689" rel="noopener" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="link fa-fw"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.fengerzh.com/" title="https:&#x2F;&#x2F;www.fengerzh.com&#x2F;" rel="noopener" target="_blank">日新亭</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.niuxiaokui.top/" title="https:&#x2F;&#x2F;blog.niuxiaokui.top&#x2F;" rel="noopener" target="_blank">奔跑的牛</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://dingcang.github.io/2017/12/linux%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="dingcang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丁仓的Blog">
+      <meta itemprop="description" content="something to write">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Linux学习 | 丁仓的Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linux学习
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-12-29 16:53:54" itemprop="dateCreated datePublished" datetime="2017-12-29T16:53:54+08:00">2017-12-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2020-06-17 11:17:46" itemprop="dateModified" datetime="2020-06-17T11:17:46+08:00">2020-06-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><ul>
+<li>&#x2F;bin - 系统级的组件</li>
+<li>&#x2F;etc - 可配置文件</li>
+<li>&#x2F;sbin - 根用户才能访问</li>
+<li>&#x2F;usr - 可执行文件<ul>
+<li>&#x2F;usr&#x2F;bin - 系统提供的应用程序</li>
+<li>&#x2F;usr&#x2F;local&#x2F;bin - 用户自己安装的应用程序 <strong>brew安装的都在这个位置</strong></li>
+</ul>
+</li>
+<li>&#x2F;var - 日志等</li>
+<li>&#x2F;tmp - 临时文件</li>
+<li>&#x2F;home或&#x2F;Users - 用户文件<ul>
+<li>&#x2F;Users&#x2F;<strong>用户名</strong>&#x2F; - 例：&#x2F;Users&#x2F;edz,可通过命令<code>cd ~</code>、<code>cd ~/</code>更改到这个目录</li>
+<li>&#x2F;Users&#x2F;edz&#x2F;Desktop - 桌面</li>
+<li>&#x2F;Users&#x2F;edz&#x2F;Downloads - 下载</li>
+</ul>
+</li>
+</ul>
+<h2 id="一些备忘命令"><a href="#一些备忘命令" class="headerlink" title="一些备忘命令"></a>一些备忘命令</h2><ul>
+<li><code>sudo spctl --master-disable</code> - 开启安全性与隐私的任何来源</li>
+<li><code>lsof -i:3000</code>  查看3000端口是否被占用,如果端口被占用，则会返回相关信息，如果没被占用，则不返回任何信息。</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/lanchunhui/article/details/71057211">rz、sz （上传下载）命令参数的解释</a><ul>
+<li>-a, –ascii</li>
+<li>-b, –binary 用binary的方式上传下载，不解释字符为 ascii</li>
+<li>-e, –escape 强制escape 所有控制字符，比如 Ctrl+x，DEL 等</li>
+<li>-y 表示文件已存在的时候会覆盖</li>
+<li>–o-sync 采用同步写模式，以处理从缓存写到磁盘时中断丢失的情况</li>
+<li>-r 使用 Crash recovery mode. 即文件传输中断会重传</li>
+<li><code>-ary –o-sync</code></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/10/js%E7%9F%A5%E8%AF%86%E7%82%B9%E5%A4%8D%E4%B9%A0/" rel="prev" title="js知识点复习">
+                  <i class="fa fa-chevron-left"></i> js知识点复习
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/07/MySQl%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="next" title="MySQL的使用">
+                  MySQL的使用 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2016 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="html5"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Front End Programer</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

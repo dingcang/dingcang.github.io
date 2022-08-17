@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"dingcang.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"style":null,"show_result":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="js对象数组没办法进行传输，必须转化成json串进行传送json和js对象的对比   对比内容 json js对象    键名 必须加双引号 可允许不加，加单引号、双引号   属性值 只能是数值（10进制），字符串（双引号），布尔值和null，也可以是符合json要求的对象和数组 爱啥啥   逗号问题 最后一个属性后面不能加逗号 可以   数值 前导0不能用，小数点后必须有数字 没限制   JSO">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JSON知识总结">
+<meta property="og:url" content="https://dingcang.github.io/2016/07/JSON%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="丁仓的Blog">
+<meta property="og:description" content="js对象数组没办法进行传输，必须转化成json串进行传送json和js对象的对比   对比内容 json js对象    键名 必须加双引号 可允许不加，加单引号、双引号   属性值 只能是数值（10进制），字符串（双引号），布尔值和null，也可以是符合json要求的对象和数组 爱啥啥   逗号问题 最后一个属性后面不能加逗号 可以   数值 前导0不能用，小数点后必须有数字 没限制   JSO">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-07-11T01:49:47.000Z">
+<meta property="article:modified_time" content="2016-07-11T01:49:47.000Z">
+<meta property="article:author" content="dingcang">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="json">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://dingcang.github.io/2016/07/JSON%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://dingcang.github.io/2016/07/JSON%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/","path":"2016/07/JSON知识总结/","title":"JSON知识总结"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>JSON知识总结 | 丁仓的Blog</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">丁仓的Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#js%E5%AF%B9%E8%B1%A1%E6%95%B0%E7%BB%84%E6%B2%A1%E5%8A%9E%E6%B3%95%E8%BF%9B%E8%A1%8C%E4%BC%A0%E8%BE%93%EF%BC%8C%E5%BF%85%E9%A1%BB%E8%BD%AC%E5%8C%96%E6%88%90json%E4%B8%B2%E8%BF%9B%E8%A1%8C%E4%BC%A0%E9%80%81"><span class="nav-number">1.</span> <span class="nav-text">js对象数组没办法进行传输，必须转化成json串进行传送</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#json%E5%92%8Cjs%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="nav-number">2.</span> <span class="nav-text">json和js对象的对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSON-stringify%E7%9A%84%E7%94%A8%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">JSON.stringify的用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8-%E5%8F%AA%E9%9C%80%E8%A6%81%E4%B8%80%E4%B8%AA%E5%8F%82%E6%95%B0"><span class="nav-number">3.1.</span> <span class="nav-text">基本使用-只需要一个参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E4%B8%AA%E5%8F%82%E6%95%B0%E5%8F%AF%E4%BB%A5%E6%98%AF%E5%87%BD%E6%95%B0%EF%BC%8C%E4%B9%9F%E5%8F%AF%E4%BB%A5%E6%98%AF%E6%95%B0%E7%BB%84"><span class="nav-number">3.2.</span> <span class="nav-text">第二个参数可以是函数，也可以是数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E4%B8%AA%E5%8F%82%E6%95%B0%E6%98%AF%E7%94%A8%E4%BA%8E%E7%BE%8E%E5%8C%96%E8%BE%93%E5%87%BA%EF%BC%8C%E4%B8%8D%E5%BB%BA%E8%AE%AE%E4%BD%BF%E7%94%A8"><span class="nav-number">3.3.</span> <span class="nav-text">第三个参数是用于美化输出，不建议使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%99%E4%B8%AA%E5%87%BD%E6%95%B0%E7%9A%84%E2%80%9C%E5%B0%8F%E8%81%AA%E6%98%8E%E2%80%9D%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89"><span class="nav-number">3.4.</span> <span class="nav-text">这个函数的“小聪明”（重要）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSON-parse%E7%9A%84%E7%94%A8%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">JSON.parse的用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON-parse%E7%9A%84%E8%AF%AD%E6%B3%95"><span class="nav-number">4.1.</span> <span class="nav-text">JSON.parse的语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E5%AE%83%E7%9A%84%E5%B0%8F%E7%BB%86%E8%8A%82"><span class="nav-number">4.2.</span> <span class="nav-text">其它的小细节</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#object-toJSON"><span class="nav-number">5.</span> <span class="nav-text">object.toJSON</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98"><span class="nav-number">6.</span> <span class="nav-text">兼容性问题</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="dingcang"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">dingcang</p>
+  <div class="site-description" itemprop="description">something to write</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dingcang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;dingcang" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/d15538928689" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;d15538928689" rel="noopener" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="link fa-fw"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.fengerzh.com/" title="https:&#x2F;&#x2F;www.fengerzh.com&#x2F;" rel="noopener" target="_blank">日新亭</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.niuxiaokui.top/" title="https:&#x2F;&#x2F;blog.niuxiaokui.top&#x2F;" rel="noopener" target="_blank">奔跑的牛</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://dingcang.github.io/2016/07/JSON%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="dingcang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丁仓的Blog">
+      <meta itemprop="description" content="something to write">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="JSON知识总结 | 丁仓的Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JSON知识总结
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-07-11 09:49:47" itemprop="dateCreated datePublished" datetime="2016-07-11T09:49:47+08:00">2016-07-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="js对象数组没办法进行传输，必须转化成json串进行传送"><a href="#js对象数组没办法进行传输，必须转化成json串进行传送" class="headerlink" title="js对象数组没办法进行传输，必须转化成json串进行传送"></a>js对象数组没办法进行传输，必须转化成json串进行传送</h2><h2 id="json和js对象的对比"><a href="#json和js对象的对比" class="headerlink" title="json和js对象的对比"></a>json和js对象的对比</h2><table>
+<thead>
+<tr>
+<th align="center">对比内容</th>
+<th align="center">json</th>
+<th align="center">js对象</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">键名</td>
+<td align="center">必须加双引号</td>
+<td align="center">可允许不加，加单引号、双引号</td>
+</tr>
+<tr>
+<td align="center">属性值</td>
+<td align="center">只能是数值（10进制），字符串（双引号），布尔值和null，也可以是符合json要求的对象和数组</td>
+<td align="center">爱啥啥</td>
+</tr>
+<tr>
+<td align="center">逗号问题</td>
+<td align="center">最后一个属性后面不能加逗号</td>
+<td align="center">可以</td>
+</tr>
+<tr>
+<td align="center">数值</td>
+<td align="center">前导0不能用，小数点后必须有数字</td>
+<td align="center">没限制</td>
+</tr>
+</tbody></table>
+<h2 id="JSON-stringify的用法"><a href="#JSON-stringify的用法" class="headerlink" title="JSON.stringify的用法"></a>JSON.stringify的用法</h2><p><code>JSON.stringify(value[, replacer [, space]])</code></p>
+<h3 id="基本使用-只需要一个参数"><a href="#基本使用-只需要一个参数" class="headerlink" title="基本使用-只需要一个参数"></a>基本使用-只需要一个参数</h3><pre><code>传入一个js对象或者数组，JSON.stringify([object/array]),返回一个字符串。
+</code></pre>
+<h3 id="第二个参数可以是函数，也可以是数组"><a href="#第二个参数可以是函数，也可以是数组" class="headerlink" title="第二个参数可以是函数，也可以是数组"></a>第二个参数可以是函数，也可以是数组</h3><ul>
+    <li style="list-style-type:disc">如果第二个参数是一个函数，那么序列化过程中的每个属性都会被这个函数转化和处理</li>
+    <li style="list-style-type:disc">如果第二个参数是一个数组，那么只有包含在这个数组中的属性才会被序列化到最终的JSON字符串中</li>
+    <li style="list-style-type:disc">如果第二个参数是null，那作用上和空着没啥区别，但是不想设置第二个参数，只是想设置第三个参数的时候，就可以设置第二个参数为null</li>
+</ul>
+
+<h3 id="第三个参数是用于美化输出，不建议使用"><a href="#第三个参数是用于美化输出，不建议使用" class="headerlink" title="第三个参数是用于美化输出，不建议使用"></a>第三个参数是用于美化输出，不建议使用</h3><pre><code>指定缩进用的空白字符，可以取以下几个值：
+</code></pre>
+<ul>
+    <li style="list-style-type:disc">是1-10的某个数字，代表用几个空白字符</li>
+    <li style="list-style-type:disc">是字符串的话，就用该字符串代替空格，最多取这个字符串的前10个字符</li>
+    <li style="list-style-type:disc">没有提供该参数 等于 设置成null 等于 设置一个小于1的数</li>
+</ul>
+
+<h3 id="这个函数的“小聪明”（重要）"><a href="#这个函数的“小聪明”（重要）" class="headerlink" title="这个函数的“小聪明”（重要）"></a>这个函数的“小聪明”（重要）</h3><ul>
+    <li style="list-style-type:disc">键名不是双引号的（包括没有引号或者是单引号），会自动变成双引号；字符串是单引号的，会自动变成双引号</li>
+    <li style="list-style-type:disc">最后一个属性后面有逗号的，会被自动去掉</li>
+    <li style="list-style-type:disc">非数组对象的属性不能保证以特定的顺序出现在序列化后的字符串中。这个好理解，也就是对非数组对象在最终字符串中不保证属性顺序和原来一致</li>
+    <li style="list-style-type:disc">布尔值、数字、字符串的包装对象在序列化过程中会自动转换成对应的原始值。也就是你的什么new String("bala")会变成"bala"，new Number(2017)会变成2017</li>
+    <li style="list-style-type:disc">undefined、任意的函数（其实有个函数会发生神奇的事，后面会说）以及 symbol 值<br>出现在非数组对象的属性值中：在序列化过程中会被忽略<br>出现在数组中时：被转换成 null</li>
+    <li style="list-style-type:disc">NaN、Infinity和-Infinity，不论在数组还是非数组的对象中，都被转化为null</li>
+    <li style="list-style-type:disc">所有以 symbol 为属性键的属性都会被完全忽略掉，即便 replacer 参数中强制指定包含了它们</li>
+    <li style="list-style-type:disc">不可枚举的属性会被忽略</li>
+</ul>
+
+<h2 id="JSON-parse的用法"><a href="#JSON-parse的用法" class="headerlink" title="JSON.parse的用法"></a>JSON.parse的用法</h2><p><code>JSON.parse(text[, reviver])</code></p>
+<h3 id="JSON-parse的语法"><a href="#JSON-parse的语法" class="headerlink" title="JSON.parse的语法"></a>JSON.parse的语法</h3><blockquote>
+<p>&amp;emsp;&amp;emsp;如果第一个参数，即JSON字符串不是合法的字符串的话，那么这个函数会抛出错误，所以如果你在写一个后端返回JSON字符串的脚本，最好调用语言本身的JSON字符串相关序列化函数，而如果是自己去拼接实现的序列化字符串，那么就尤其要注意序列化后的字符串是否是合法的，合法指这个JSON字符串完全符合JSON要求的严格格式。<br>&amp;emsp;&amp;emsp;第二个参数，必须是一个函数，这个函数作用在属性已经被解析但是还没返回前，将属性处理后再返回。</p>
+</blockquote>
+<pre><code><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> friend=&#123;</span><br><span class="line">    <span class="string">&quot;firstName&quot;</span>: <span class="string">&quot;Good&quot;</span>,</span><br><span class="line">    <span class="string">&quot;lastName&quot;</span>: <span class="string">&quot;Man&quot;</span>,</span><br><span class="line">    <span class="string">&quot;phone&quot;</span>:&#123;<span class="string">&quot;home&quot;</span>:<span class="string">&quot;1234567&quot;</span>,<span class="string">&quot;work&quot;</span>:[<span class="string">&quot;7654321&quot;</span>,<span class="string">&quot;999000&quot;</span>]&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//我们先将其序列化</span></span><br><span class="line"><span class="keyword">var</span> friendAfter=<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(friend);</span><br><span class="line"><span class="comment">//&#x27;&#123;&quot;firstName&quot;:&quot;Good&quot;,&quot;lastName&quot;:&quot;Man&quot;,&quot;phone&quot;:&#123;&quot;home&quot;:&quot;1234567&quot;,&quot;work&quot;:[&quot;7654321&quot;,&quot;999000&quot;]&#125;&#125;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//再将其解析出来，在第二个参数的函数中打印出key和value</span></span><br><span class="line"><span class="title class_">JSON</span>.<span class="title function_">parse</span>(friendAfter,<span class="keyword">function</span>(<span class="params">k,v</span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(k);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(v);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;----&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">firstName</span></span><br><span class="line"><span class="comment">Good</span></span><br><span class="line"><span class="comment">----</span></span><br><span class="line"><span class="comment">lastName</span></span><br><span class="line"><span class="comment">Man</span></span><br><span class="line"><span class="comment">----</span></span><br><span class="line"><span class="comment">home</span></span><br><span class="line"><span class="comment">1234567</span></span><br><span class="line"><span class="comment">----</span></span><br><span class="line"><span class="comment">0</span></span><br><span class="line"><span class="comment">7654321</span></span><br><span class="line"><span class="comment">----</span></span><br><span class="line"><span class="comment">1</span></span><br><span class="line"><span class="comment">999000</span></span><br><span class="line"><span class="comment">----</span></span><br><span class="line"><span class="comment">work</span></span><br><span class="line"><span class="comment">[]</span></span><br><span class="line"><span class="comment">----</span></span><br><span class="line"><span class="comment">phone</span></span><br><span class="line"><span class="comment">Object</span></span><br><span class="line"><span class="comment">----</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">Object</span></span><br><span class="line"><span class="comment">----</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+</code></pre>
+<p>&amp;emsp;&amp;emsp;这个遍历是由内而外的。遍历的时候，从头到尾进行遍历，如果是简单属性值（数值、字符串、布尔值和null），那么直接遍历完成，如果是遇到属性值是对象或者数组形式的，那么暂停，先遍历这个子JSON，而遍历的原则也是一样的，等这个复合属性遍历完成，那么再完成对这个属性的遍历返回。</p>
+<h3 id="其它的小细节"><a href="#其它的小细节" class="headerlink" title="其它的小细节"></a>其它的小细节</h3><ul>
+<li>如果 reviver 返回 undefined，则当前属性会从所属对象中删除，如果返回了其他值，则返回的值会成为当前属性新的属性值。</li>
+<li>你可以注意到上面例子最后一组输出看上去没有key，其实这个key是一个空字符串，而最后的object是最后解析完成对象，因为到了最上层，已经没有真正的属性了。</li>
+</ul>
+<h2 id="object-toJSON"><a href="#object-toJSON" class="headerlink" title="object.toJSON"></a>object.toJSON</h2><blockquote>
+<p>如果你在一个JS对象上实现了toJSON方法，那么调用JSON.stringify去序列化这个JS对象时，JSON.stringify会把这个对象的toJSON方法返回的值作为参数去进行序列化。</p>
+</blockquote>
+<pre><code><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> info=&#123;</span><br><span class="line">    <span class="string">&quot;msg&quot;</span>:<span class="string">&quot;I Love You&quot;</span>,</span><br><span class="line">    <span class="string">&quot;toJSON&quot;</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">var</span> replaceMsg=<span class="keyword">new</span> <span class="title class_">Object</span>();</span><br><span class="line">        replaceMsg[<span class="string">&quot;msg&quot;</span>]=<span class="string">&quot;Go Die&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> replaceMsg;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title class_">JSON</span>.<span class="title function_">stringify</span>(info);</span><br><span class="line"><span class="comment">//出si了，返回的是：&#x27;&quot;&#123;&quot;msg&quot;:&quot;Go Die&quot;&#125;&quot;&#x27;,说好的忽略函数呢</span></span><br></pre></td></tr></table></figure>
+</code></pre>
+<blockquote>
+<p>其实Date类型可以直接传给JSON.stringify做参数，其中的道理就是，Date类型内置了toJSON方法。</p>
+</blockquote>
+<h2 id="兼容性问题"><a href="#兼容性问题" class="headerlink" title="兼容性问题"></a>兼容性问题</h2><p>以上所用的3个函数，不兼容IE7以及IE7之前的浏览器。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+              <a href="/tags/json/" rel="tag"># json</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2016/06/markdown%E5%A4%87%E5%BF%98/" rel="prev" title="markdown备忘">
+                  <i class="fa fa-chevron-left"></i> markdown备忘
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2016/07/git%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="next" title="git的使用">
+                  git的使用 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2016 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="html5"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Front End Programer</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

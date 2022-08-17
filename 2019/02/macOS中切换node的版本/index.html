@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"dingcang.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"style":null,"show_result":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="题记今天在通过 yarn 安装veturpack的依赖项时，node-sass这一块一直不成功。从控制台看报错信息，大概为 environment 不支持，并给了一个node-sass Supported Environments的 github 地址，可以看到在OSX系统中，对 Node 的版本支持最高直到 v8.x.x。而我的 Node 版本为 v11.x.x，所以我需要一个降级。 Nodej">
+<meta property="og:type" content="article">
+<meta property="og:title" content="macOS中切换Node的版本">
+<meta property="og:url" content="https://dingcang.github.io/2019/02/macOS%E4%B8%AD%E5%88%87%E6%8D%A2node%E7%9A%84%E7%89%88%E6%9C%AC/index.html">
+<meta property="og:site_name" content="丁仓的Blog">
+<meta property="og:description" content="题记今天在通过 yarn 安装veturpack的依赖项时，node-sass这一块一直不成功。从控制台看报错信息，大概为 environment 不支持，并给了一个node-sass Supported Environments的 github 地址，可以看到在OSX系统中，对 Node 的版本支持最高直到 v8.x.x。而我的 Node 版本为 v11.x.x，所以我需要一个降级。 Nodej">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-02-27T09:42:57.000Z">
+<meta property="article:modified_time" content="2021-12-06T15:38:01.000Z">
+<meta property="article:author" content="dingcang">
+<meta property="article:tag" content="Nodejs">
+<meta property="article:tag" content="macOS">
+<meta property="article:tag" content="Homebrew">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://dingcang.github.io/2019/02/macOS%E4%B8%AD%E5%88%87%E6%8D%A2node%E7%9A%84%E7%89%88%E6%9C%AC/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://dingcang.github.io/2019/02/macOS%E4%B8%AD%E5%88%87%E6%8D%A2node%E7%9A%84%E7%89%88%E6%9C%AC/","path":"2019/02/macOS中切换node的版本/","title":"macOS中切换Node的版本"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>macOS中切换Node的版本 | 丁仓的Blog</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">丁仓的Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">题记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%87%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E6%96%B0%E6%9B%B4%E6%96%B0"><span class="nav-number">3.</span> <span class="nav-text">最新更新</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="dingcang"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">dingcang</p>
+  <div class="site-description" itemprop="description">something to write</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/dingcang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;dingcang" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/d15538928689" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;d15538928689" rel="noopener" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="link fa-fw"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.fengerzh.com/" title="https:&#x2F;&#x2F;www.fengerzh.com&#x2F;" rel="noopener" target="_blank">日新亭</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.niuxiaokui.top/" title="https:&#x2F;&#x2F;blog.niuxiaokui.top&#x2F;" rel="noopener" target="_blank">奔跑的牛</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://dingcang.github.io/2019/02/macOS%E4%B8%AD%E5%88%87%E6%8D%A2node%E7%9A%84%E7%89%88%E6%9C%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="dingcang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丁仓的Blog">
+      <meta itemprop="description" content="something to write">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="macOS中切换Node的版本 | 丁仓的Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          macOS中切换Node的版本
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-02-27 17:42:57" itemprop="dateCreated datePublished" datetime="2019-02-27T17:42:57+08:00">2019-02-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2021-12-06 23:38:01" itemprop="dateModified" datetime="2021-12-06T23:38:01+08:00">2021-12-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="题记"><a href="#题记" class="headerlink" title="题记"></a>题记</h2><p>今天在通过 yarn 安装<code>veturpack</code>的依赖项时，<code>node-sass</code>这一块一直不成功。从控制台看报错信息，大概为 environment 不支持，并给了一个<code>node-sass</code> <a target="_blank" rel="noopener" href="https://github.com/sass/node-sass/releases/tag/v4.5.3"><code>Supported Environments</code>的 github 地址</a>，可以看到在<code>OSX</code>系统中，对 Node 的版本支持最高直到 v8.x.x。而我的 Node 版本为 v11.x.x，所以我需要一个降级。</p>
+<p>Nodejs 的版本切换方式有很多种，<code>NVM</code>就是其中杰出的代表，不过今天我们的主角不是他，而是另一位，强大的<code>Homebrew</code>，因为是用的</p>
+<blockquote>
+<p>Homebrew 是一款自由及开放源代码的软件包管理系统，用以简化 macOS 系统上的软件安装过程，最初由马克斯·霍威尔（Max Howell）写成。因其可扩展性得到了一致好评，而在 Ruby on Rails 社区广为人知。</p>
+</blockquote>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><ul>
+<li><p>查看本地 cellar 安装的有哪些版本，以及远程有哪些版本</p>
+<ul>
+<li><p><code>brew list | grep node</code>查看本地 cellar 中的所有 Node 版本；</p>
+</li>
+<li><p><code>brew search node | grep node</code>查看远程有哪些版本。</p>
+</li>
+</ul>
+</li>
+<li><p>现在我需要一个不超过 8.x.x 版本的 Node，执行<code>brew install node@8</code>，安装一个 v8.x.x 版本的 Node</p>
+</li>
+<li><p>切换 Node 版本可通过 unlink 先将当前版本的 Node 移除，再通过 link 相应版本的方式来实现</p>
+<ul>
+<li><code>brew unlink node</code>将当前版本的 Node 移除掉</li>
+<li><code>brew link --overwrite node@8</code>，这个时候可能会输出提醒要把可执行文件配置到系统PATH中，笔者自己使用的是zsh，执行提示信息中的<code>echo &#39;export PATH=&quot;/usr/local/opt/node@8/bin:$PATH&quot;&#39; &gt;&gt; ~/.zshrc</code>命令，会在<code>~/.zshrc</code>文件中写入<code>export PATH=&quot;/usr/local/opt/node@8/bin:$PATH&quot;</code>，最后需要<code>source ~/.zshrc</code>使修改立即生效</li>
+</ul>
+</li>
+<li><p>检查当前Node版本<code>node -v</code>，输出的是v8.15.0，完美。yarn-sass也成功安装，veturpack 运行成功。</p>
+</li>
+</ul>
+<h2 id="最新更新"><a href="#最新更新" class="headerlink" title="最新更新"></a>最新更新</h2><p>  上面的方式已经弃用，brew中node版本满足不了项目开发需要，已切换到nvm。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Nodejs/" rel="tag"># Nodejs</a>
+              <a href="/tags/macOS/" rel="tag"># macOS</a>
+              <a href="/tags/Homebrew/" rel="tag"># Homebrew</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/02/Iterm2%E7%9A%84%E9%85%8D%E7%BD%AE/" rel="prev" title="Iterm2的配置">
+                  <i class="fa fa-chevron-left"></i> Iterm2的配置
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/06/vue%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/" rel="next" title="vue项目部署">
+                  vue项目部署 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2016 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="html5"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Front End Programer</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
