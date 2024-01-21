@@ -22,9 +22,9 @@
 
     <meta name="description" content="something to write">
 <meta property="og:type" content="website">
-<meta property="og:title" content="丁仓的Blog">
+<meta property="og:title" content="dingcang的Blog">
 <meta property="og:url" content="https://dingcang.github.io/index.html">
-<meta property="og:site_name" content="丁仓的Blog">
+<meta property="og:site_name" content="dingcang的Blog">
 <meta property="og:description" content="something to write">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="dingcang">
@@ -39,7 +39,7 @@
 <script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>丁仓的Blog</title>
+<title>dingcang的Blog</title>
   
 
 
@@ -69,7 +69,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">丁仓的Blog</h1>
+      <h1 class="site-title">dingcang的Blog</h1>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -128,7 +128,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -198,6 +198,94 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://dingcang.github.io/2024/01/%E5%85%B3%E4%BA%8E%E6%9F%90%E5%8A%A0%E8%A7%A3%E5%AF%86%E7%BD%91%E7%AB%99%E7%9A%84%E9%80%86%E5%90%91%E5%AE%9E%E8%B7%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="dingcang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="dingcang的Blog">
+      <meta itemprop="description" content="something to write">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | dingcang的Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/01/%E5%85%B3%E4%BA%8E%E6%9F%90%E5%8A%A0%E8%A7%A3%E5%AF%86%E7%BD%91%E7%AB%99%E7%9A%84%E9%80%86%E5%90%91%E5%AE%9E%E8%B7%B5/" class="post-title-link" itemprop="url">关于某加解密网站的逆向实践</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-01-21 11:16:21" itemprop="dateCreated datePublished" datetime="2024-01-21T11:16:21+08:00">2024-01-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>  前几日一微信群里，有群友说某在线AI网站 <a target="_blank" rel="noopener" href="https://tool.chinaz.com/tools/base64.aspx">aHR0cHM6Ly9haS5jZ3Byb21wdC5uZXQvZHJhdw&#x3D;&#x3D;</a> 无法打开控制台进行调试。来了好奇心进行尝试，果真如此。一打开控制台，页面就会跳转，导致network里面的资源无法正常查看。一番研究后，发现是使用了<a target="_blank" rel="noopener" href="https://github.com/theajack/disable-devtool/tree/master"><strong>disable-devtool</strong></a>开源工具来做的。研究其源码是发现使用到了md5加密，遂搜寻在线解密网站。</p>
+<p>  于是，便遇到了这篇文章要讲的主角。昨天花费了一天将其彻底逆向，今天记录下来以飨有缘读者。</p>
+<h2 id="访问地址"><a href="#访问地址" class="headerlink" title="访问地址"></a>访问地址</h2><p><a target="_blank" rel="noopener" href="https://tool.chinaz.com/tools/base64.aspx">aHR0cHM6Ly93d3cuc29qc29uLmNvbS9lbmNyeXB0X21kNS5odG1s</a></p>
+<h2 id="逆向目标"><a href="#逆向目标" class="headerlink" title="逆向目标"></a>逆向目标</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/01/%E5%85%B3%E4%BA%8E%E6%9F%90%E5%8A%A0%E8%A7%A3%E5%AF%86%E7%BD%91%E7%AB%99%E7%9A%84%E9%80%86%E5%90%91%E5%AE%9E%E8%B7%B5/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://dingcang.github.io/2023/03/web%E9%80%86%E5%90%91%E5%AD%A6%E4%B9%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -206,12 +294,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丁仓的Blog">
+      <meta itemprop="name" content="dingcang的Blog">
       <meta itemprop="description" content="something to write">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 丁仓的Blog">
+      <meta itemprop="name" content="undefined | dingcang的Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -296,12 +384,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丁仓的Blog">
+      <meta itemprop="name" content="dingcang的Blog">
       <meta itemprop="description" content="something to write">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 丁仓的Blog">
+      <meta itemprop="name" content="undefined | dingcang的Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -391,12 +479,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丁仓的Blog">
+      <meta itemprop="name" content="dingcang的Blog">
       <meta itemprop="description" content="something to write">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 丁仓的Blog">
+      <meta itemprop="name" content="undefined | dingcang的Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -498,12 +586,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丁仓的Blog">
+      <meta itemprop="name" content="dingcang的Blog">
       <meta itemprop="description" content="something to write">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 丁仓的Blog">
+      <meta itemprop="name" content="undefined | dingcang的Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -588,12 +676,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丁仓的Blog">
+      <meta itemprop="name" content="dingcang的Blog">
       <meta itemprop="description" content="something to write">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 丁仓的Blog">
+      <meta itemprop="name" content="undefined | dingcang的Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -704,12 +792,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丁仓的Blog">
+      <meta itemprop="name" content="dingcang的Blog">
       <meta itemprop="description" content="something to write">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 丁仓的Blog">
+      <meta itemprop="name" content="undefined | dingcang的Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -809,12 +897,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丁仓的Blog">
+      <meta itemprop="name" content="dingcang的Blog">
       <meta itemprop="description" content="something to write">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 丁仓的Blog">
+      <meta itemprop="name" content="undefined | dingcang的Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -892,122 +980,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://dingcang.github.io/2017/12/linux%E5%AD%A6%E4%B9%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="dingcang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丁仓的Blog">
-      <meta itemprop="description" content="something to write">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 丁仓的Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/12/linux%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">Linux学习</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-12-29 16:53:54" itemprop="dateCreated datePublished" datetime="2017-12-29T16:53:54+08:00">2017-12-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2020-06-17 11:17:46" itemprop="dateModified" datetime="2020-06-17T11:17:46+08:00">2020-06-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><ul>
-<li>&#x2F;bin - 系统级的组件</li>
-<li>&#x2F;etc - 可配置文件</li>
-<li>&#x2F;sbin - 根用户才能访问</li>
-<li>&#x2F;usr - 可执行文件<ul>
-<li>&#x2F;usr&#x2F;bin - 系统提供的应用程序</li>
-<li>&#x2F;usr&#x2F;local&#x2F;bin - 用户自己安装的应用程序 <strong>brew安装的都在这个位置</strong></li>
-</ul>
-</li>
-<li>&#x2F;var - 日志等</li>
-<li>&#x2F;tmp - 临时文件</li>
-<li>&#x2F;home或&#x2F;Users - 用户文件<ul>
-<li>&#x2F;Users&#x2F;<strong>用户名</strong>&#x2F; - 例：&#x2F;Users&#x2F;edz,可通过命令<code>cd ~</code>、<code>cd ~/</code>更改到这个目录</li>
-<li>&#x2F;Users&#x2F;edz&#x2F;Desktop - 桌面</li>
-<li>&#x2F;Users&#x2F;edz&#x2F;Downloads - 下载</li>
-</ul>
-</li>
-</ul>
-<h2 id="一些备忘命令"><a href="#一些备忘命令" class="headerlink" title="一些备忘命令"></a>一些备忘命令</h2><ul>
-<li><code>sudo spctl --master-disable</code> - 开启安全性与隐私的任何来源</li>
-<li><code>lsof -i:3000</code>  查看3000端口是否被占用,如果端口被占用，则会返回相关信息，如果没被占用，则不返回任何信息。</li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/lanchunhui/article/details/71057211">rz、sz （上传下载）命令参数的解释</a><ul>
-<li>-a, –ascii</li>
-<li>-b, –binary 用binary的方式上传下载，不解释字符为 ascii</li>
-<li>-e, –escape 强制escape 所有控制字符，比如 Ctrl+x，DEL 等</li>
-<li>-y 表示文件已存在的时候会覆盖</li>
-<li>–o-sync 采用同步写模式，以处理从缓存写到磁盘时中断丢失的情况</li>
-<li>-r 使用 Crash recovery mode. 即文件传输中断会重传</li>
-<li><code>-ary –o-sync</code></li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
@@ -1021,7 +993,7 @@
 
 <div class="copyright">
   &copy; 2016 – 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="html5"></i>
   </span>

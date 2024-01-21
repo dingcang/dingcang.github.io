@@ -22,9 +22,9 @@
 
     <meta name="description" content="something to write">
 <meta property="og:type" content="website">
-<meta property="og:title" content="丁仓的Blog">
+<meta property="og:title" content="dingcang的Blog">
 <meta property="og:url" content="https://dingcang.github.io/page/3/index.html">
-<meta property="og:site_name" content="丁仓的Blog">
+<meta property="og:site_name" content="dingcang的Blog">
 <meta property="og:description" content="something to write">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="dingcang">
@@ -39,7 +39,7 @@
 <script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"page/3/index.html","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>丁仓的Blog</title>
+<title>dingcang的Blog</title>
   
 
 
@@ -69,7 +69,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">丁仓的Blog</h1>
+      <h1 class="site-title">dingcang的Blog</h1>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -128,7 +128,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -198,6 +198,150 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://dingcang.github.io/2017/10/js%E7%9F%A5%E8%AF%86%E7%82%B9%E5%A4%8D%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="dingcang">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="dingcang的Blog">
+      <meta itemprop="description" content="something to write">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | dingcang的Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/10/js%E7%9F%A5%E8%AF%86%E7%82%B9%E5%A4%8D%E4%B9%A0/" class="post-title-link" itemprop="url">js知识点复习</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-10-28 22:19:39" itemprop="dateCreated datePublished" datetime="2017-10-28T22:19:39+08:00">2017-10-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2018-07-04 11:24:00" itemprop="dateModified" datetime="2018-07-04T11:24:00+08:00">2018-07-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="浅拷贝与深拷贝"><a href="#浅拷贝与深拷贝" class="headerlink" title="浅拷贝与深拷贝"></a>浅拷贝与深拷贝</h2><ul>
+<li><p>浅拷贝</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">extendCopy</span>(<span class="params">p, c</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> c = c || &#123;&#125;;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> p) &#123;</span><br><span class="line">    c[i] = p[i];</span><br><span class="line">  &#125;</span><br><span class="line">  c.<span class="property">uber</span> = p;</span><br><span class="line">  <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES2015 的语法,性能良好</span></span><br><span class="line"><span class="keyword">var</span> a = &#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> b = <span class="title class_">Object</span>.<span class="title function_">assign</span>(&#123;&#125;, a);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>深拷贝</p>
+<ul>
+<li><p>递归方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">deepCopy</span>(<span class="params">p, c</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> c = c || &#123;&#125;;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> p) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> p[i] == <span class="string">&#x27;object&#x27;</span>) &#123;</span><br><span class="line">      c[i] = p[i].<span class="property">constructor</span> === <span class="title class_">Array</span> ? [] : &#123;&#125;;</span><br><span class="line">      <span class="title function_">deepCopy</span>(p[i], c[i]);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      c[i] = p[i];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>JSON 对象的提供的方法,性能不太理想</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> b = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(a));</span><br></pre></td></tr></table></figure>
+
+<p>能够处理JSON格式的所有数据类型，但是对于正则表达式类型、函数类型等无法进行深拷贝，而且会直接丢失相应的值，还有就是它会抛弃对象的constructor。也就是深拷贝之后，不管这个对象原来的构造函数是什么，在深拷贝之后都会变成Object。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="什么是跨域"><a href="#什么是跨域" class="headerlink" title="什么是跨域"></a>什么是跨域</h2><blockquote>
+<p>拥有相同的协议、端口和主机，那么就属于同一个源（origin）。反之，不符合条件的都是跨域。</p>
+</blockquote>
+<h2 id="GET-和-POST-的区别"><a href="#GET-和-POST-的区别" class="headerlink" title="GET 和 POST 的区别"></a>GET 和 POST 的区别</h2><ul>
+<li><p><strong>GET 和 POST 长度的限制问题</strong><br>GET 是通过 URL 提交数据，因此 GET 可提交的数据量就跟 URL 所能达到的最大长度有直接关系。实际上 HTTP 协议对 URL 长度是没有限制的；限制 URL 长度大多数是浏览器或者服务器的配置参数;同样的，HTTP 协议没有对 POST 进行任何限制，一般是受服务器配置限制或者内存大小。</p>
+</li>
+<li><p><strong>GET 和 POST 的安全性</strong><br>GET 是通过 URL 方式请求，可以直接看到，明文传输。POST 是通过请求 header 请求，可以开发者工具或者抓包可以看到，同样也是明文的。GET 请求会保存在浏览器历史纪录中，还可能会保存在 Web 的日志中。</p>
+</li>
+<li><p><strong>对服务器状态的影响</strong><br>根据 http 的设计，GET 应该对服务器状态没有修改，而 POST 应该对服务器状态做修改。</p>
+</li>
+<li><p><strong>幂等</strong><br>幂等是指同一个请求方法执行多次和仅执行一次的效果完全相同。按照 RFC 规范，PUT，DELETE 和安全方法都是幂等的,POST 语义不是幂等的。</p>
+</li>
+<li><p><strong>总结</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">改变服务器状态</th>
+<th align="center">不改变服务器状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">幂等</td>
+<td align="center">PUT</td>
+<td align="center">GET</td>
+</tr>
+<tr>
+<td align="center">不幂等</td>
+<td align="center">POST</td>
+<td align="center">无</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2017/10/js%E7%9F%A5%E8%AF%86%E7%82%B9%E5%A4%8D%E4%B9%A0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://dingcang.github.io/2016/06/markdown%E5%A4%87%E5%BF%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -206,12 +350,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丁仓的Blog">
+      <meta itemprop="name" content="dingcang的Blog">
       <meta itemprop="description" content="something to write">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 丁仓的Blog">
+      <meta itemprop="name" content="undefined | dingcang的Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -308,12 +452,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丁仓的Blog">
+      <meta itemprop="name" content="dingcang的Blog">
       <meta itemprop="description" content="something to write">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 丁仓的Blog">
+      <meta itemprop="name" content="undefined | dingcang的Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -407,12 +551,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丁仓的Blog">
+      <meta itemprop="name" content="dingcang的Blog">
       <meta itemprop="description" content="something to write">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 丁仓的Blog">
+      <meta itemprop="name" content="undefined | dingcang的Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -496,12 +640,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丁仓的Blog">
+      <meta itemprop="name" content="dingcang的Blog">
       <meta itemprop="description" content="something to write">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 丁仓的Blog">
+      <meta itemprop="name" content="undefined | dingcang的Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -587,12 +731,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丁仓的Blog">
+      <meta itemprop="name" content="dingcang的Blog">
       <meta itemprop="description" content="something to write">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 丁仓的Blog">
+      <meta itemprop="name" content="undefined | dingcang的Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -697,12 +841,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丁仓的Blog">
+      <meta itemprop="name" content="dingcang的Blog">
       <meta itemprop="description" content="something to write">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 丁仓的Blog">
+      <meta itemprop="name" content="undefined | dingcang的Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -854,12 +998,12 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丁仓的Blog">
+      <meta itemprop="name" content="dingcang的Blog">
       <meta itemprop="description" content="something to write">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 丁仓的Blog">
+      <meta itemprop="name" content="undefined | dingcang的Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
@@ -927,105 +1071,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://dingcang.github.io/2016/10/jade%E7%9A%84%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="dingcang">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丁仓的Blog">
-      <meta itemprop="description" content="something to write">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 丁仓的Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2016/10/jade%E7%9A%84%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">jade的使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2016-10-05 10:51:09" itemprop="dateCreated datePublished" datetime="2016-10-05T10:51:09+08:00">2016-10-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">编程工具</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="jade（Pug）"><a href="#jade（Pug）" class="headerlink" title="jade（Pug）"></a>jade（Pug）</h2><p>由于商标版权问题，jade 已经改名为 Pug，github 地址为<a target="_blank" rel="noopener" href="https://github.com/pugjs/pug">https://github.com/pugjs/pug</a>。<br>jade 是一个高性能的模版引擎。<br>文件后缀名是.pug(.jade)。</p>
-<h2 id="jade-的优点"><a href="#jade-的优点" class="headerlink" title="jade 的优点"></a>jade 的优点</h2><ul>
-<li>可读性高</li>
-<li>灵活缩进</li>
-<li>块展开</li>
-<li>代码默认经过编码处理，安全性高</li>
-<li>运行时和编译时上下文错误报告</li>
-<li>支持命令行编译</li>
-<li>支持 html5 模式</li>
-<li>在内存中缓存（可选）</li>
-<li>原生支持 express</li>
-<li>合并动态和静态标签类</li>
-<li>过滤器</li>
-</ul>
-<h2 id="jade-的编译方法"><a href="#jade-的编译方法" class="headerlink" title="jade 的编译方法"></a>jade 的编译方法</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">pug xxx.jade //xxx为要编译的文件名</span><br><span class="line"></span><br><span class="line">pug -- <span class="built_in">help</span></span><br><span class="line">    Options:</span><br><span class="line">        -p,--pretty     compile pretty HTML output //输出漂亮结构的HTML</span><br><span class="line">        -D,--no-debug   compile without debugging(smaller <span class="built_in">functions</span>) //不带调试的编译</span><br><span class="line">        -w,--watch      watch files <span class="keyword">for</span> changes and automatically re-render //对某个文件的变动保持监控</span><br><span class="line">        -E,--extension &lt;ext&gt;    specify the output file extension //指定输出文件扩展名</span><br><span class="line">        -s,--silent     don<span class="string">&#x27;t output logs //不输出日志</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2016/10/jade%E7%9A%84%E4%BD%BF%E7%94%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
@@ -1039,7 +1084,7 @@
 
 <div class="copyright">
   &copy; 2016 – 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="html5"></i>
   </span>
